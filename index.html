@@ -1888,19 +1888,17 @@
 
         /* Address Autocomplete Dropdown */
         .address-autocomplete {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+            position: fixed;
             background: #1a1a1a;
             border: 2px solid var(--primary);
-            border-radius: 8px;
+            border-radius: 12px;
             margin-top: 0.5rem;
-            max-height: 300px;
+            max-height: 280px;
             overflow-y: auto;
-            z-index: 10000;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 217, 244, 0.3);
             display: none;
+            backdrop-filter: blur(10px);
         }
 
         .address-autocomplete.show {
@@ -2711,6 +2709,15 @@
                     </div>
                 `;
             }).join('');
+            
+            // Position the dropdown below the input field
+            const inputField = document.getElementById('calculatorAddress') || document.getElementById('address');
+            if (inputField) {
+                const rect = inputField.getBoundingClientRect();
+                dropdown.style.top = (rect.bottom + 8) + 'px';
+                dropdown.style.left = rect.left + 'px';
+                dropdown.style.width = rect.width + 'px';
+            }
             
             dropdown.classList.add('show');
             console.log('Dropdown should now be visible'); // Debug log
