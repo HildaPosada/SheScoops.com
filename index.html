@@ -1736,7 +1736,7 @@
             document.querySelectorAll('.button-group')[1].querySelectorAll('.btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.closest('.btn').classList.add('active');
         }
 
         // Set frequency and update display
@@ -1745,7 +1745,7 @@
             document.querySelectorAll('.button-group')[0].querySelectorAll('.btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.closest('.btn').classList.add('active');
         }
 
         // Set dogs from slider
