@@ -2618,6 +2618,7 @@
         let autocompleteTimeout;
         let selectedAddress = null;
         let suggestedYardSize = null;
+        let autocompleteResults = [];
 
         function handleAddressInput(event) {
             const query = event.target.value.trim();
@@ -2671,7 +2672,10 @@
                 return;
             }
             
-            dropdown.innerHTML = results.map(result => {
+            // Store results globally so we can access them by index
+            autocompleteResults = results;
+            
+            dropdown.innerHTML = results.map((result, index) => {
                 const address = result.address || {};
                 const mainAddress = [
                     address.house_number,
@@ -2685,7 +2689,7 @@
                 ].filter(Boolean).join(', ');
                 
                 return `
-                    <div class="autocomplete-item" onclick='selectAddress(${JSON.stringify(result).replace(/'/g, "&#39;")})'>
+                    <div class="autocomplete-item" onclick="selectAddress(${index})">
                         <div class="address-main">${mainAddress || result.display_name}</div>
                         <div class="address-details">${details}</div>
                     </div>
@@ -2695,7 +2699,8 @@
             dropdown.classList.add('show');
         }
 
-        function selectAddress(result) {
+        function selectAddress(index) {
+            const result = autocompleteResults[index];
             selectedAddress = result;
             const address = result.address || {};
             
