@@ -338,6 +338,280 @@
             font-family: 'Space Mono', monospace;
         }
 
+        /* Social Proof Section */
+        .social-proof {
+            background: transparent;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .social-proof-text {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background: #252525;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid #444;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .testimonial-location {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #1a1a1a;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            cursor: help;
+            transition: var(--transition);
+        }
+
+        .tooltip-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255, 217, 244, 0.6);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #252525;
+            color: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            width: 220px;
+            z-index: 1000;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.3s, visibility 0.3s;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--primary);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #252525;
+            border-radius: 12px;
+            border: 2px solid #444;
+        }
+
+        .faq-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question::before {
+            content: '▸';
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #ccc;
+            margin-left: 1.7rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            margin-top: 0.5rem;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #444;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Error States */
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff4444;
+            animation: shake 0.5s;
+        }
+
+        .yard-type-grid.error,
+        .challenges-grid.error {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+            animation: fadeInUp 0.3s;
+        }
+
         /* Form Section */
         .form-section {
             background: transparent;
@@ -1269,6 +1543,250 @@
             }
         }
 
+        /* Social Proof Section */
+        .social-proof {
+            background: transparent;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .social-proof-text {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background: #252525;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid #444;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .testimonial-location {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #1a1a1a;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            cursor: help;
+            transition: var(--transition);
+        }
+
+        .tooltip-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255, 217, 244, 0.6);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #252525;
+            color: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            width: 220px;
+            z-index: 1000;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.3s, visibility 0.3s;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--primary);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #252525;
+            border-radius: 12px;
+            border: 2px solid #444;
+        }
+
+        .faq-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question::before {
+            content: '\25b8';
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #ccc;
+            margin-left: 1.7rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            margin-top: 0.5rem;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #444;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         .form-group input.error,
         .form-group textarea.error {
             border-color: #ff4444 !important;
@@ -1543,9 +2061,48 @@
                 <h2 class="section-title">Your Service Needs</h2>
             </div>
 
+            <!-- Mission Box -->
+            <div class="mission-box">
+                <h2 class="mission-title">🐾 Our Mission</h2>
+                <p class="mission-text">She Scoops is dedicated to making your yard a safe, clean, and enjoyable space for you and your furry friends. Let us handle the dirty work so you can focus on what matters most—enjoying quality time with your pups!</p>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <div class="social-proof-text">⭐ Join 500+ Happy Customers in Columbus</div>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Best service in Santa Clarita! She Scoops saved me so much time."</p>
+                        <div class="testimonial-author">Jessica M.</div>
+                        <div class="testimonial-location">Santa Clarita</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Professional, reliable, and affordable. I don't know how I managed before! They truly care about quality service."</p>
+                        <div class="testimonial-author">Mike R.</div>
+                        <div class="testimonial-location">Clintonville</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Best decision ever! My 3 dogs make quite a mess, but She Scoops keeps our yard looking perfect. Worth every penny!"</p>
+                        <div class="testimonial-author">Jennifer T.</div>
+                        <div class="testimonial-location">Upper Arlington</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #888; margin-bottom: 1.5rem; font-size: 0.9rem;">⏱️ Takes 2 minutes</p>
+
             <!-- Service Frequency -->
             <div class="control-group">
-                <div class="control-label">Service Frequency</div>
+                <div class="control-label">
+                    📅 Service Frequency
+                    <span class="tooltip">
+                        <span class="tooltip-icon">?</span>
+                        <span class="tooltip-text">Weekly service is recommended for optimal yard cleanliness. Bi-weekly works great for smaller yards or fewer dogs.</span>
+                    </span>
+                </div>
                 <div class="button-group">
                     <button class="btn active" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
                     <button class="btn" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
@@ -1555,7 +2112,13 @@
 
             <!-- Yard Size -->
             <div class="control-group">
-                <div class="control-label">Yard Size</div>
+                <div class="control-label">
+                    🏡 Yard Size
+                    <span class="tooltip">
+                        <span class="tooltip-icon">?</span>
+                        <span class="tooltip-text">Not sure? Small = typical city lot, Medium = suburban yard, Large = half-acre or more.</span>
+                    </span>
+                </div>
                 <div class="button-group">
                     <button class="btn" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
                     <button class="btn active" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
@@ -1566,7 +2129,13 @@
 
             <!-- Number of Dogs -->
             <div class="control-group">
-                <div class="control-label">Number of Dogs</div>
+                <div class="control-label">
+                    🐕 Number of Dogs
+                    <span class="tooltip">
+                        <span class="tooltip-icon">?</span>
+                        <span class="tooltip-text">More dogs = more waste to clean. Our pricing adjusts based on the number of pups in your pack!</span>
+                    </span>
+                </div>
                 <div class="slider-container">
                     <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
                     <div class="slider-labels">
@@ -1776,13 +2345,77 @@
             <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
         </div>
 
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">How do you dispose of pet waste?</div>
+                <div class="faq-answer">
+                    Your pet's health and environmental safety are our top priorities. Dog waste is classified as a hazardous material and must be disposed of properly. We double-bag all waste using eco-friendly bags and place it securely in your trash can. If preferred, we can position it neatly beside your residence. This ensures safe, sanitary disposal that protects both your family and the environment.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">How do you keep my dog safe during service?</div>
+                <div class="faq-answer">
+                    Safety is our highest priority. We thoroughly clean and disinfect all equipment and footwear with eco-friendly, kennel-grade disinfectant between every single yard visit. This prevents any potential germ transmission between properties. After completing our service, we provide gate photos for your peace of mind, confirming your pets are safe and secure within the yard. Your dog's health and well-being drive everything we do.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">Can you clean with my dog in the yard?</div>
+                <div class="faq-answer">
+                    For the safety of both your beloved pet and our professional team, we kindly require that all dogs remain indoors during the cleaning process. This allows us to work efficiently and accurately while ensuring no one gets hurt. The safety of our team members is paramount—if dogs are repeatedly left outside during scheduled visits, we may need to remove the property from our service route. We appreciate your cooperation in keeping everyone safe!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve?</div>
+                <div class="faq-answer">
+                    We proudly serve the greater Columbus area, including German Village, Clintonville, Upper Arlington, Grandview Heights, Bexley, and surrounding neighborhoods. Not sure if we cover your area? Submit your quote request, and we'll confirm availability for your location!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">What if I need to skip a week?</div>
+                <div class="faq-answer">
+                    We understand life happens! Simply text or email us at least 24 hours before your scheduled service, and we'll skip that week without any penalties. Flexibility and great customer service are what we're all about.
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div class="footer-info">
             ✨ NEW CUSTOMERS GET $20 OFF YOUR FIRST MONTH | Questions? Text (614) 918-7667
         </div>
     </div>
 
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div style="text-align: center;">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Submitting your quote...</div>
+        </div>
+    </div>
+
     <script>
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isOpen = faqItem.classList.contains('open');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('open');
+            });
+            
+            // Open clicked item if it wasn't already open
+            if (!isOpen) {
+                faqItem.classList.add('open');
+            }
+        }
+
         // Pricing Model
         const prices = {
             1: { name: 'Weekly', base: 160, dogsMultiplier: 40 },
@@ -2040,6 +2673,10 @@
             formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
             formData.append('_replyto', email || 'no-email@provided.com');
 
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('show');
+
             fetch('https://formspree.io/f/meoqvdzq', {
                 method: 'POST',
                 body: formData,
@@ -2048,23 +2685,36 @@
                 }
             })
             .then(response => {
+                // Hide loading
+                loadingOverlay.classList.remove('show');
+                
                 if (response.ok) {
+                    // Show success feedback briefly before redirect
+                    const submitMessage = document.getElementById('submitMessage');
+                    submitMessage.style.display = 'block';
+                    submitMessage.textContent = '✅ Success! Redirecting to your confirmation...';
+                    submitMessage.style.color = '#4caf50';
+                    
                     // Redirect to thank you page with details
-                    const queryParams = new URLSearchParams({
-                        price: finalPrice,
-                        discount: 20,
-                        service: serviceType,
-                        address: address
-                    });
-                    window.location.href = 'thank-you.html?' + queryParams.toString();
+                    setTimeout(() => {
+                        const queryParams = new URLSearchParams({
+                            price: finalPrice,
+                            discount: 20,
+                            service: serviceType,
+                            address: address
+                        });
+                        window.location.href = 'thank-you.html?' + queryParams.toString();
+                    }, 1000);
                 } else {
                     throw new Error('Form submission failed');
                 }
             })
             .catch(error => {
+                // Hide loading
+                loadingOverlay.classList.remove('show');
                 const messageDiv = document.getElementById('formMessage');
                 messageDiv.className = 'form-message error';
-                messageDiv.textContent = '✗ Sorry, something went wrong. Please try again or email us at she.scoops.poop@gmail.com';
+                messageDiv.textContent = '⚠️ Oops! There was a problem. Please try again or text us at (614) 918-7667';
                 messageDiv.style.display = 'block';
             });
         }
