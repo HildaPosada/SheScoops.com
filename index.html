@@ -2391,39 +2391,7 @@
             <p style="text-align: center; color: #aaa; font-size: 0.8rem; margin-bottom: 1.5rem;">💡 Most fields are optional - we just need your address to get started</p>
 
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
-                <!-- STEP 1: ADDRESS FIRST -->
-                <div style="background: rgba(255, 217, 244, 0.05); border: 2px solid var(--primary); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
-                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.5rem; text-align: center;">🏠 Where is your yard?</h3>
-                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1rem;">We'll auto-detect your property size</p>
-                    
-                    <div class="form-group" style="position: relative; margin-bottom: 0;">
-                        <label for="address" style="font-size: 1rem; margin-bottom: 0.8rem;">Address: <span class="required-badge">Required</span></label>
-                        <input 
-                            type="text" 
-                            id="address" 
-                            name="address" 
-                            placeholder="Start typing your address..." 
-                            required 
-                            autocomplete="off"
-                            oninput="handleAddressInput(event)"
-                            onblur="setTimeout(() => hideAutocomplete(), 200)"
-                            style="font-size: 1.05rem; padding: 1rem;"
-                        >
-                        <div class="address-autocomplete" id="addressAutocomplete"></div>
-                    </div>
-
-                    <!-- Yard Size Suggestion -->
-                    <div class="yard-size-suggestion" id="yardSizeSuggestion" style="margin-top: 1rem;">
-                        <div class="suggestion-icon">🏡</div>
-                        <div class="suggestion-text">
-                            <div class="suggestion-title" id="suggestionTitle">Suggested Yard Size: Medium</div>
-                            <div class="suggestion-desc" id="suggestionDesc">Based on your address location</div>
-                        </div>
-                        <button class="suggestion-btn" onclick="applySuggestion()" type="button">Apply</button>
-                    </div>
-                </div>
-
-                <!-- STEP 2: CONFIRM YARD SIZE -->
+                <!-- STEP 1: CONFIRM YARD SIZE -->
                 <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
                     <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: center;">Confirm Your Property Size</h3>
                     <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1.5rem;">Auto-detected or choose manually</p>
