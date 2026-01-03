@@ -2266,14 +2266,10 @@
                 </div>
 
                 <!-- Address Input for Calculator -->
-                <div class="control-group">
-                    <div class="control-label">
-                        📍 Enter Your Address
-                        <span class="tooltip">
-                            <span class="tooltip-icon">?</span>
-                            <span class="tooltip-text">Type your address and we'll automatically detect your property size!</span>
-                        </span>
-                    </div>
+                <div style="background: rgba(255, 217, 244, 0.05); border: 2px solid var(--primary); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;">
+                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.5rem; text-align: center;">📍 Where is your yard?</h3>
+                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1rem;">We'll auto-detect your property size</p>
+                    
                     <div style="position: relative;">
                         <input 
                             type="text" 
@@ -2282,7 +2278,7 @@
                             autocomplete="street-address"
                             oninput="handleCalculatorAddressInput(event)"
                             onblur="setTimeout(() => hideCalculatorAutocomplete(), 200)"
-                            style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
+                            style="width: 100%; padding: 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1.05rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
                         >
                         <div class="address-autocomplete" id="calculatorAddressAutocomplete"></div>
                     </div>
