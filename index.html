@@ -2852,16 +2852,21 @@
                 // Hide suggestion
                 document.getElementById('yardSizeSuggestion').classList.remove('show');
                 
-                // Highlight the selected yard size button
-                document.querySelectorAll('.button-group')[1].querySelectorAll('.btn').forEach(btn => {
-                    btn.classList.remove('active');
+                // Visual feedback
+                const yardSizeButtons = document.querySelectorAll('.button-group .btn');
+                yardSizeButtons.forEach((btn) => {
+                    const btnText = btn.textContent.toLowerCase();
+                    if ((suggestedYardSize === 'small' && btnText.includes('kiba')) ||
+                        (suggestedYardSize === 'medium' && btnText.includes('lexi')) ||
+                        (suggestedYardSize === 'large' && btnText.includes('kenzo')) ||
+                        (suggestedYardSize === 'xlarge' && btnText.includes('akka'))) {
+                        // Add a brief highlight animation
+                        btn.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            btn.style.transform = '';
+                        }, 200);
+                    }
                 });
-                
-                const buttons = document.querySelectorAll('.button-group')[1].querySelectorAll('.btn');
-                const sizeMap = { 'small': 0, 'medium': 1, 'large': 2, 'xlarge': 3 };
-                if (buttons[sizeMap[suggestedYardSize]]) {
-                    buttons[sizeMap[suggestedYardSize]].classList.add('active');
-                }
             }
         }
 
@@ -2928,19 +2933,52 @@
         // Set yard size and update display
         function setYardSize(size) {
             selectedYardSize = size;
-            document.querySelectorAll('.button-group')[1].querySelectorAll('.btn').forEach(btn => {
-                btn.classList.remove('active');
+            // Find the yard size button group (has data attribute or contains yard size buttons)
+            const yardSizeButtons = document.querySelectorAll('.button-group .btn');
+            const sizeMap = { 'small': 0, 'medium': 1, 'large': 2, 'xlarge': 3 };
+            
+            yardSizeButtons.forEach((btn, index) => {
+                const btnText = btn.textContent.toLowerCase();
+                if (btnText.includes('kiba') || btnText.includes('lexi') || btnText.includes('kenzo') || btnText.includes('akka')) {
+                    btn.classList.remove('active');
+                }
             });
-            event.target.closest('.btn').classList.add('active');
+            
+            // Activate the correct button based on size
+            yardSizeButtons.forEach((btn) => {
+                const btnText = btn.textContent.toLowerCase();
+                if ((size === 'small' && btnText.includes('kiba')) ||
+                    (size === 'medium' && btnText.includes('lexi')) ||
+                    (size === 'large' && btnText.includes('kenzo')) ||
+                    (size === 'xlarge' && btnText.includes('akka'))) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
         // Set frequency and update display
         function setFrequency(freq) {
             selectedFrequency = freq;
-            document.querySelectorAll('.button-group')[0].querySelectorAll('.btn').forEach(btn => {
-                btn.classList.remove('active');
+            // Find frequency buttons
+            const frequencyButtons = document.querySelectorAll('.button-group .btn');
+            
+            frequencyButtons.forEach((btn) => {
+                const btnText = btn.textContent.toUpperCase();
+                // Remove active from frequency buttons only
+                if (btnText.includes('WEEKLY') || btnText.includes('2X')) {
+                    btn.classList.remove('active');
+                }
             });
-            event.target.closest('.btn').classList.add('active');
+            
+            // Activate the correct button
+            frequencyButtons.forEach((btn) => {
+                const btnText = btn.textContent.toUpperCase();
+                if ((freq === 1 && btnText === 'WEEKLY') ||
+                    (freq === 2 && btnText === 'BI-WEEKLY') ||
+                    (freq === 3 && btnText.includes('2X'))) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
         // Set dogs from slider
