@@ -1543,6 +1543,47 @@
             }
         }
 
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #444;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #888;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         /* Social Proof Section */
         .social-proof {
             background: transparent;
@@ -2054,47 +2095,24 @@
         <!-- Title -->
         <h1 class="main-title">pricing.</h1>
 
-        <!-- SECTION 1: CALCULATOR -->
-        <div class="section calculator-section">
-            <!-- Section Header -->
-            <div class="section-header">
-                <h2 class="section-title">Your Service Needs</h2>
-            </div>
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('calculator')">Get Quote</button>
+            <button class="tab-btn" onclick="switchTab('mission')">Our Mission</button>
+        </div>
 
-            <!-- Mission Box -->
-            <div class="mission-box">
-                <h2 class="mission-title">🐾 Our Mission</h2>
-                <p class="mission-text">She Scoops is dedicated to making your yard a safe, clean, and enjoyable space for you and your furry friends. Let us handle the dirty work so you can focus on what matters most—enjoying quality time with your pups!</p>
-            </div>
-
-            <!-- Social Proof -->
-            <div class="social-proof">
-                <div class="social-proof-text">⭐ Join 500+ Happy Customers in Columbus</div>
-                <div class="testimonials">
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"Best service in Santa Clarita! She Scoops saved me so much time."</p>
-                        <div class="testimonial-author">Jessica M.</div>
-                        <div class="testimonial-location">Santa Clarita</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"Professional, reliable, and affordable. I don't know how I managed before! They truly care about quality service."</p>
-                        <div class="testimonial-author">Mike R.</div>
-                        <div class="testimonial-location">Clintonville</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"Best decision ever! My 3 dogs make quite a mess, but She Scoops keeps our yard looking perfect. Worth every penny!"</p>
-                        <div class="testimonial-author">Jennifer T.</div>
-                        <div class="testimonial-location">Upper Arlington</div>
-                    </div>
+        <!-- Calculator Tab -->
+        <div id="calculator-tab" class="tab-content active">
+            <!-- SECTION 1: CALCULATOR -->
+            <div class="section calculator-section">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h2 class="section-title">Your Service Needs</h2>
                 </div>
-            </div>
 
-            <p style="text-align: center; color: #888; margin-bottom: 1.5rem; font-size: 0.9rem;">⏱️ Takes 2 minutes</p>
+                <p style="text-align: center; color: #888; margin-bottom: 1.5rem; font-size: 0.9rem;">⏱️ Takes 2 minutes</p>
 
-            <!-- Service Frequency -->
+                <!-- Service Frequency -->
             <div class="control-group">
                 <div class="control-label">
                     📅 Service Frequency
@@ -2345,6 +2363,41 @@
             <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
         </div>
 
+        </div>
+        <!-- End Calculator Tab -->
+
+        <!-- Mission Tab -->
+        <div id="mission-tab" class="tab-content">
+            <!-- Mission Box -->
+            <div class="mission-box">
+                <h2 class="mission-title">🐾 Our Mission</h2>
+                <p class="mission-text">She Scoops is dedicated to making your yard a safe, clean, and enjoyable space for you and your furry friends. Let us handle the dirty work so you can focus on what matters most—enjoying quality time with your pups!</p>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <div class="social-proof-text">⭐ Join Our Happy Customers</div>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Best service in Santa Clarita! She Scoops saved me so much time."</p>
+                        <div class="testimonial-author">Jessica M.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Professional, reliable, and affordable. I don't know how I managed before! They truly care about quality service."</p>
+                        <div class="testimonial-author">Mike R.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Best decision ever! My 3 dogs make quite a mess, but She Scoops keeps our yard looking perfect. Worth every penny!"</p>
+                        <div class="testimonial-author">Jennifer T.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Mission Tab -->
+
         <!-- FAQ Section -->
         <div class="faq-section">
             <h2 class="faq-title">Frequently Asked Questions</h2>
@@ -2369,20 +2422,6 @@
                     For the safety of both your beloved pet and our professional team, we kindly require that all dogs remain indoors during the cleaning process. This allows us to work efficiently and accurately while ensuring no one gets hurt. The safety of our team members is paramount—if dogs are repeatedly left outside during scheduled visits, we may need to remove the property from our service route. We appreciate your cooperation in keeping everyone safe!
                 </div>
             </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">What areas do you serve?</div>
-                <div class="faq-answer">
-                    We proudly serve the greater Columbus area, including German Village, Clintonville, Upper Arlington, Grandview Heights, Bexley, and surrounding neighborhoods. Not sure if we cover your area? Submit your quote request, and we'll confirm availability for your location!
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">What if I need to skip a week?</div>
-                <div class="faq-answer">
-                    We understand life happens! Simply text or email us at least 24 hours before your scheduled service, and we'll skip that week without any penalties. Flexibility and great customer service are what we're all about.
-                </div>
-            </div>
         </div>
 
         <!-- Footer -->
@@ -2400,6 +2439,28 @@
     </div>
 
     <script>
+        // Tab Switching Function
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            if (tabName === 'calculator') {
+                document.getElementById('calculator-tab').classList.add('active');
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            } else if (tabName === 'mission') {
+                document.getElementById('mission-tab').classList.add('active');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            }
+        }
+
         // FAQ Toggle Function
         function toggleFAQ(element) {
             const faqItem = element.parentElement;
