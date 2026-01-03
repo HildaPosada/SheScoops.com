@@ -2215,8 +2215,8 @@
                             <span class="tooltip-text">Type your address and we'll automatically detect your property size!</span>
                         </span>
                     </div>
-                    <div style="display: flex; gap: 0.8rem; align-items: stretch; flex-wrap: wrap;">
-                        <div style="flex: 1 1 300px; position: relative;">
+                    <div style="display: flex; gap: 0.8rem; align-items: stretch;">
+                        <div style="flex: 1; min-width: 0; position: relative;">
                             <input 
                                 type="text" 
                                 id="calculatorAddress" 
@@ -2229,7 +2229,7 @@
                         </div>
                         
                         <!-- Inline Yard Size Prediction Badge -->
-                        <div class="yard-size-suggestion" id="yardSizeSuggestion" style="display: none; flex: 0 1 auto; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.5rem; background: rgba(76, 175, 80, 0.15); border: 2px solid #4caf50; border-radius: 8px; font-size: 0.85rem; color: #4caf50; font-weight: 600; white-space: nowrap; animation: slideInRight 0.3s ease-out;">
+                        <div class="yard-size-suggestion" id="yardSizeSuggestion" style="display: none; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.2rem; background: rgba(76, 175, 80, 0.15); border: 2px solid #4caf50; border-radius: 8px; font-size: 0.85rem; color: #4caf50; font-weight: 600; white-space: nowrap; animation: slideInRight 0.3s ease-out;">
                             <span style="font-size: 1.2rem;">✓</span>
                             <span id="suggestionTitle">LEXI detected</span>
                         </div>
