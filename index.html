@@ -2279,22 +2279,22 @@
                             type="text" 
                             id="calculatorAddress" 
                             placeholder="Start typing your address..." 
-                            autocomplete="street-address"
-                            oninput="handleCalculatorAddressInput(event)"
-                            onblur="setTimeout(() => hideCalculatorAutocomplete(), 200)"
+                            autocomplete="off"
+                            oninput="handleAddressInput(event)"
+                            onblur="setTimeout(() => hideAutocomplete(), 200)"
                             style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
                         >
-                        <div class="address-autocomplete" id="calculatorAddressAutocomplete"></div>
+                        <div class="address-autocomplete" id="addressAutocomplete"></div>
                     </div>
                     
                     <!-- Calculator Yard Size Suggestion -->
-                    <div class="yard-size-suggestion" id="calculatorYardSizeSuggestion" style="margin-top: 1rem;">
+                    <div class="yard-size-suggestion" id="yardSizeSuggestion" style="margin-top: 1rem;">
                         <div class="suggestion-icon">🏡</div>
                         <div class="suggestion-text">
-                            <div class="suggestion-title" id="calculatorSuggestionTitle">Suggested Yard Size: Medium</div>
-                            <div class="suggestion-desc" id="calculatorSuggestionDesc">Based on your address location</div>
+                            <div class="suggestion-title" id="suggestionTitle">Suggested Yard Size: Medium</div>
+                            <div class="suggestion-desc" id="suggestionDesc">Based on your address location</div>
                         </div>
-                        <button class="suggestion-btn" onclick="applyCalculatorSuggestion()" type="button">Apply</button>
+                        <button class="suggestion-btn" onclick="applySuggestion()" type="button">Apply</button>
                     </div>
                 </div>
 
@@ -2785,6 +2785,13 @@
             ].filter(Boolean).join(', ');
             
             document.getElementById('address').value = fullAddress;
+            
+            // Also update the calculator address field if it exists
+            const calculatorAddressField = document.getElementById('calculatorAddress');
+            if (calculatorAddressField) {
+                calculatorAddressField.value = fullAddress;
+            }
+            
             hideAutocomplete();
             
             // Suggest yard size based on location type
