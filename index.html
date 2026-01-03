@@ -2314,6 +2314,42 @@
                         <button class="btn" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
                     </div>
                 </div>
+
+                <!-- Service Frequency -->
+                <div class="control-group">
+                    <div class="control-label">
+                        📅 Service Frequency
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Weekly service is recommended for optimal yard cleanliness. Bi-weekly works great for smaller yards or fewer dogs.</span>
+                        </span>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn active" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
+                        <button class="btn" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
+                        <button class="btn" onclick="setFrequency(2); updateCalculation();">BI-WEEKLY</button>
+                    </div>
+                </div>
+
+                <!-- Number of Dogs -->
+                <div class="control-group">
+                    <div class="control-label">
+                        🐕 Number of Dogs
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">More dogs = more waste to clean. Our pricing adjusts based on the number of pups in your pack!</span>
+                        </span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
+                        <div class="slider-labels">
+                            <span>1-2</span>
+                            <span>3-4</span>
+                            <span>5+</span>
+                        </div>
+                        <div class="paw-display" id="pawDisplay"><img src="Paws.png" alt="paw"></div>
+                    </div>
+                </div>
             </div>
 
         <!-- Mission Box -->
