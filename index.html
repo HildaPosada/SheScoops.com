@@ -2243,7 +2243,7 @@
                             <span class="tooltip-text">Auto-detected from your address, or choose manually.</span>
                         </span>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group" id="yardSizeButtons">
                         <button class="btn" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
                         <button class="btn active" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
                         <button class="btn" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
@@ -2826,15 +2826,13 @@
         // Set yard size and update display
         function setYardSize(size) {
             selectedYardSize = size;
-            // Find the yard size button group (has data attribute or contains yard size buttons)
-            const yardSizeButtons = document.querySelectorAll('.button-group .btn');
-            const sizeMap = { 'small': 0, 'medium': 1, 'large': 2, 'xlarge': 3 };
             
-            yardSizeButtons.forEach((btn, index) => {
-                const btnText = btn.textContent.toLowerCase();
-                if (btnText.includes('kiba') || btnText.includes('lexi') || btnText.includes('kenzo') || btnText.includes('akka')) {
-                    btn.classList.remove('active');
-                }
+            // Target only yard size buttons
+            const yardSizeButtons = document.querySelectorAll('#yardSizeButtons .btn');
+            
+            // Remove active class from all yard size buttons
+            yardSizeButtons.forEach(btn => {
+                btn.classList.remove('active');
             });
             
             // Activate the correct button based on size
