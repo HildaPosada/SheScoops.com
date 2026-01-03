@@ -430,9 +430,9 @@
         /* Yard Type Grid - Apple/Nike Style */
         .yard-type-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.6rem;
-            margin-top: 0.8rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.6rem;
         }
 
         .yard-type-option {
@@ -441,8 +441,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.2rem;
-            padding: 0.75rem 0.6rem;
+            gap: 0.15rem;
+            padding: 0.5rem 0.4rem;
             border: 2px solid #555;
             border-radius: 8px;
             background: white;
@@ -468,62 +468,62 @@
             margin: 0;
         }
 
-        /* When checkbox is checked, change container background to black */
+        /* When checkbox is checked, change container background to pink */
         .yard-type-option:has(input[type="checkbox"]:checked) {
-            background: var(--dark);
+            background: var(--primary);
             border: 3px solid var(--primary);
-            color: var(--primary);
-            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            color: #1a1a1a;
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.4);
             transform: translateY(-2px);
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked):hover {
-            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            box-shadow: 0 12px 28px rgba(255, 217, 244, 0.5);
             transform: translateY(-4px);
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-name {
-            color: var(--primary);
+            color: #1a1a1a;
             font-weight: 700;
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-desc {
-            color: var(--primary);
-            opacity: 0.9;
+            color: #1a1a1a;
+            opacity: 0.85;
         }
 
         .yard-type-option.checked {
-            background: var(--dark);
-            border-color: var(--dark);
-            color: var(--primary);
-            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            background: var(--primary);
+            border: 3px solid var(--primary);
+            color: #1a1a1a;
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.4);
             transform: translateY(-2px);
         }
 
         .yard-type-option.checked:hover {
-            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            box-shadow: 0 12px 28px rgba(255, 217, 244, 0.5);
             transform: translateY(-4px);
         }
 
         .yard-type-option.checked .yard-type-name {
-            color: var(--primary);
+            color: #1a1a1a;
             font-weight: 700;
         }
 
         .yard-type-option.checked .yard-type-desc {
-            color: var(--primary);
-            opacity: 0.9;
+            color: #1a1a1a;
+            opacity: 0.85;
         }
 
         .yard-type-name {
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #1a1a1a;
             transition: var(--transition);
         }
 
         .yard-type-desc {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #666;
             font-weight: 500;
             transition: var(--transition);
