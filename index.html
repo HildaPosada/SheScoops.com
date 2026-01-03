@@ -340,11 +340,11 @@
 
         /* Trust Badges */
         .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            justify-content: center;
-            margin: 1.5rem 0;
+            max-width: 500px;
+            margin: 1.5rem auto;
             padding: 1rem;
             background: rgba(255, 217, 244, 0.05);
             border-radius: 8px;
@@ -362,6 +362,12 @@
             font-weight: 600;
             color: var(--primary);
             transition: var(--transition);
+        }
+
+        .trust-badge:last-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 240px;
         }
 
         .trust-badge:hover {
