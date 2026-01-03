@@ -2391,23 +2391,7 @@
             <p style="text-align: center; color: #aaa; font-size: 0.8rem; margin-bottom: 1.5rem;">💡 Most fields are optional - we just need your address to get started</p>
 
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
-                <!-- STEP 1: CONFIRM YARD SIZE -->
-                <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
-                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: center;">Confirm Your Property Size</h3>
-                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1.5rem;">Auto-detected or choose manually</p>
-                </div>
-
-                <div class="form-group">
-                    <label>Property Size: <span class="required-badge">Required</span></label>
-                    <div class="button-group">
-                        <button class="btn" type="button" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
-                        <button class="btn active" type="button" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
-                        <button class="btn" type="button" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
-                        <button class="btn" type="button" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
-                    </div>
-                </div>
-
-                <!-- STEP 4: PROPERTY DETAILS -->
+                <!-- PROPERTY DETAILS -->
                 <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
                     <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">Property Details <span style="opacity: 0.6; font-size: 0.75rem;">(Optional)</span></h3>
                 </div>
