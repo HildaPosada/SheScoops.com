@@ -2262,62 +2262,59 @@
             <div class="section calculator-section">
                 <!-- Section Header -->
                 <div class="section-header">
-                    <h2 class="section-title">Your Service Needs</h2>
+                    <h2 class="section-title">Quick Property Lookup</h2>
+                </div>
+
+                <!-- Address Input for Calculator -->
+                <div class="control-group">
+                    <div class="control-label">
+                        📍 Enter Your Address
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Type your address and we'll automatically detect your property size!</span>
+                        </span>
+                    </div>
+                    <div style="position: relative;">
+                        <input 
+                            type="text" 
+                            id="calculatorAddress" 
+                            placeholder="Start typing your address..." 
+                            autocomplete="off"
+                            oninput="handleCalculatorAddressInput(event)"
+                            onblur="setTimeout(() => hideCalculatorAutocomplete(), 200)"
+                            style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
+                        >
+                        <div class="address-autocomplete" id="calculatorAddressAutocomplete"></div>
+                    </div>
+                    
+                    <!-- Calculator Yard Size Suggestion -->
+                    <div class="yard-size-suggestion" id="calculatorYardSizeSuggestion" style="margin-top: 1rem;">
+                        <div class="suggestion-icon">🏡</div>
+                        <div class="suggestion-text">
+                            <div class="suggestion-title" id="calculatorSuggestionTitle">Suggested Yard Size: Medium</div>
+                            <div class="suggestion-desc" id="calculatorSuggestionDesc">Based on your address location</div>
+                        </div>
+                        <button class="suggestion-btn" onclick="applyCalculatorSuggestion()" type="button">Apply</button>
+                    </div>
                 </div>
 
                 <!-- Yard Size -->
-            <div class="control-group">
-                <div class="control-label">
-                    🏡 Yard Size
-                    <span class="tooltip">
-                        <span class="tooltip-icon">?</span>
-                        <span class="tooltip-text">Not sure? Small = typical city lot, Medium = suburban yard, Large = half-acre or more.</span>
-                    </span>
-                </div>
-                <div class="button-group">
-                    <button class="btn" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
-                    <button class="btn active" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
-                    <button class="btn" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
-                    <button class="btn" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
-                </div>
-            </div>
-
-                <!-- Service Frequency -->
-            <div class="control-group">
-                <div class="control-label">
-                    📅 Service Frequency
-                    <span class="tooltip">
-                        <span class="tooltip-icon">?</span>
-                        <span class="tooltip-text">Weekly service is recommended for optimal yard cleanliness. Bi-weekly works great for smaller yards or fewer dogs.</span>
-                    </span>
-                </div>
-                <div class="button-group">
-                    <button class="btn active" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
-                    <button class="btn" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
-                    <button class="btn" onclick="setFrequency(2); updateCalculation();">BI-WEEKLY</button>
-                </div>
-            </div>
-
-            <!-- Number of Dogs -->
-            <div class="control-group">
-                <div class="control-label">
-                    🐕 Number of Dogs
-                    <span class="tooltip">
-                        <span class="tooltip-icon">?</span>
-                        <span class="tooltip-text">More dogs = more waste to clean. Our pricing adjusts based on the number of pups in your pack!</span>
-                    </span>
-                </div>
-                <div class="slider-container">
-                    <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
-                    <div class="slider-labels">
-                        <span>1-2</span>
-                        <span>3-4</span>
-                        <span>5+</span>
+                <div class="control-group">
+                    <div class="control-label">
+                        🏡 Confirm Your Yard Size
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Auto-detected from your address, or choose manually.</span>
+                        </span>
                     </div>
-                    <div class="paw-display" id="pawDisplay"><img src="Paws.png" alt="paw"></div>
+                    <div class="button-group">
+                        <button class="btn" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
+                        <button class="btn active" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
+                        <button class="btn" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
+                        <button class="btn" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <!-- Mission Box -->
         <div class="mission-box">
@@ -2838,6 +2835,182 @@
 
         function hideAutocomplete() {
             document.getElementById('addressAutocomplete').classList.remove('show');
+        }
+
+        // Calculator Address Autocomplete Functions
+        let calculatorAutocompleteTimeout;
+        let calculatorSuggestedYardSize = null;
+
+        function handleCalculatorAddressInput(event) {
+            const query = event.target.value.trim();
+            
+            // Clear previous timeout
+            clearTimeout(calculatorAutocompleteTimeout);
+            
+            // Hide suggestion when typing
+            document.getElementById('calculatorYardSizeSuggestion').classList.remove('show');
+            
+            if (query.length < 3) {
+                hideCalculatorAutocomplete();
+                return;
+            }
+            
+            // Debounce API calls
+            calculatorAutocompleteTimeout = setTimeout(() => {
+                searchCalculatorAddress(query);
+            }, 300);
+        }
+
+        async function searchCalculatorAddress(query) {
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?` +
+                    `q=${encodeURIComponent(query)}, California&` +
+                    `format=json&` +
+                    `addressdetails=1&` +
+                    `limit=5&` +
+                    `countrycodes=us`,
+                    {
+                        headers: {
+                            'User-Agent': 'SheScoops Property Calculator'
+                        }
+                    }
+                );
+                
+                const results = await response.json();
+                displayCalculatorAutocomplete(results);
+            } catch (error) {
+                console.error('Calculator address search error:', error);
+            }
+        }
+
+        function displayCalculatorAutocomplete(results) {
+            const dropdown = document.getElementById('calculatorAddressAutocomplete');
+            
+            if (!results || results.length === 0) {
+                hideCalculatorAutocomplete();
+                return;
+            }
+            
+            dropdown.innerHTML = results.map(result => {
+                const address = result.address || {};
+                const mainAddress = [
+                    address.house_number,
+                    address.road
+                ].filter(Boolean).join(' ');
+                
+                const details = [
+                    address.city || address.town || address.village,
+                    address.state,
+                    address.postcode
+                ].filter(Boolean).join(', ');
+                
+                return `
+                    <div class="autocomplete-item" onclick='selectCalculatorAddress(${JSON.stringify(result).replace(/'/g, "&#39;")})'>
+                        <div class="address-main">${mainAddress || result.display_name}</div>
+                        <div class="address-details">${details}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            dropdown.classList.add('show');
+        }
+
+        function selectCalculatorAddress(result) {
+            const address = result.address || {};
+            
+            // Set the calculator address field
+            const fullAddress = [
+                address.house_number,
+                address.road,
+                address.city || address.town,
+                address.state,
+                address.postcode
+            ].filter(Boolean).join(', ');
+            
+            document.getElementById('calculatorAddress').value = fullAddress;
+            
+            // Also update the form address field
+            document.getElementById('address').value = fullAddress;
+            
+            hideCalculatorAutocomplete();
+            
+            // Suggest yard size for calculator
+            suggestCalculatorYardSize(result);
+        }
+
+        function suggestCalculatorYardSize(result) {
+            const address = result.address || {};
+            const addressType = result.type;
+            
+            let size = 'medium';
+            let sizeName = 'Medium (LEXI)';
+            let reason = 'typical for this area';
+            
+            // Intelligent suggestions based on location data
+            if (addressType === 'residential' || addressType === 'house') {
+                if (address.suburb || address.neighbourhood) {
+                    size = 'small';
+                    sizeName = 'Small (KIBA)';
+                    reason = 'typical for urban/suburban neighborhoods';
+                } else if (address.village || address.hamlet) {
+                    size = 'large';
+                    sizeName = 'Large (KENZO)';
+                    reason = 'common in rural areas';
+                }
+            }
+            
+            // Check city names for known large-lot areas
+            const city = (address.city || address.town || '').toLowerCase();
+            const largeYardCities = ['castaic', 'valencia', 'stevenson ranch', 'acton', 'agua dulce'];
+            const urbanCities = ['santa clarita', 'newhall', 'canyon country'];
+            
+            if (largeYardCities.some(c => city.includes(c))) {
+                size = 'large';
+                sizeName = 'Large (KENZO)';
+                reason = 'typical for this area';
+            } else if (urbanCities.some(c => city.includes(c))) {
+                size = 'medium';
+                sizeName = 'Medium (LEXI)';
+                reason = 'average for this neighborhood';
+            }
+            
+            // Store suggestion
+            calculatorSuggestedYardSize = size;
+            
+            // Display suggestion
+            document.getElementById('calculatorSuggestionTitle').textContent = `Suggested: ${sizeName}`;
+            document.getElementById('calculatorSuggestionDesc').textContent = `Based on ${reason}`;
+            document.getElementById('calculatorYardSizeSuggestion').classList.add('show');
+        }
+
+        function applyCalculatorSuggestion() {
+            if (calculatorSuggestedYardSize) {
+                setYardSize(calculatorSuggestedYardSize);
+                updateCalculation();
+                
+                // Hide suggestion
+                document.getElementById('calculatorYardSizeSuggestion').classList.remove('show');
+                
+                // Visual feedback
+                const yardSizeButtons = document.querySelectorAll('.button-group .btn');
+                yardSizeButtons.forEach((btn) => {
+                    const btnText = btn.textContent.toLowerCase();
+                    if ((calculatorSuggestedYardSize === 'small' && btnText.includes('kiba')) ||
+                        (calculatorSuggestedYardSize === 'medium' && btnText.includes('lexi')) ||
+                        (calculatorSuggestedYardSize === 'large' && btnText.includes('kenzo')) ||
+                        (calculatorSuggestedYardSize === 'xlarge' && btnText.includes('akka'))) {
+                        btn.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            btn.style.transform = '';
+                        }, 200);
+                    }
+                });
+            }
+        }
+
+        function hideCalculatorAutocomplete() {
+            document.getElementById('calculatorAddressAutocomplete').classList.remove('show');
         }
 
         // Tab Switching Function
