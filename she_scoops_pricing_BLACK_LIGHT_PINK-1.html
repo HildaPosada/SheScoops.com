@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>She Scoops - Premium Dog Waste Removal Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary: #FFD9F4;
+            --primary-light: #ffe8fb;
+            --primary-dark: #ff99db;
+            --secondary: #4caf50;
+            --dark: #1a1a1a;
+            --light: #252525;
+            --text: #ffffff;
+            --border: #444444;
+            --success: #4caf50;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: #1a1a1a;
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Bar - Sticky with glassmorphism */
+        .header-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(69, 69, 69, 0.5);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .website {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .website:hover {
+            color: var(--primary);
+        }
+
+        .tagline {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Main Title - Premium Typography */
+        .main-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 3rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            animation: slideInDown 0.7s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 1.5rem;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+        }
+
+        .section-title {
+            display: none;
+        }
+
+        .section-subtitle {
+            display: none;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Control Groups */
+        .control-group {
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .control-group:nth-child(1) { animation-delay: 0.1s; }
+        .control-group:nth-child(2) { animation-delay: 0.2s; }
+        .control-group:nth-child(3) { animation-delay: 0.3s; }
+
+        .control-label {
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-transform: uppercase;
+            color: var(--text);
+            opacity: 0.75;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 0.6rem;
+            border: 2px solid #555;
+            background: #252525;
+            color: #e0e0e0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .btn:hover {
+            border-color: var(--primary);
+            background: #2d2d2d;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 217, 244, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            box-shadow: 0 6px 16px rgba(255, 217, 244, 0.4);
+            font-weight: 700;
+        }
+
+        .btn.active:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.5);
+        }
+
+        .btn.active .btn-small-text {
+            color: #1a1a1a;
+            opacity: 0.8;
+        }
+
+        .btn-small-text {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 400;
+            margin-top: 0.2rem;
+            opacity: 0.65;
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* Slider */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            cursor: pointer;
+            accent-color: var(--primary);
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--dark);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3);
+            transition: var(--transition);
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.4);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--dark);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3);
+            transition: var(--transition);
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.4);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .paw-display {
+            font-size: 2rem;
+            text-align: center;
+            animation: pawBounce 0.4s ease-out;
+        }
+
+        @keyframes pawBounce {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Mission Box - Premium Card */
+        .mission-box {
+            background: var(--primary);
+            color: #1a1a1a;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            margin-top: 1.2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.7s ease-out;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mission-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .mission-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+            color: #1a1a1a;
+        }
+
+        .mission-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            opacity: 1;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            animation: fadeInUp 0.7s ease-out 0.2s both;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            color: white;
+            font-size: 0.9rem;
+            letter-spacing: 0.01em;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: white;
+            background: #252525;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(212, 105, 79, 0.1), var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #888;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            gap: 0.7rem;
+            padding: 0.7rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .checkbox-label:hover {
+            background: var(--light);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Yard Type Grid - Apple/Nike Style */
+        .yard-type-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .yard-type-option {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+            padding: 0.9rem 0.6rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .yard-type-option:hover {
+            border-color: var(--primary);
+            background: #f0f0f0;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .yard-type-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        /* When checkbox is checked, change container background to black */
+        .yard-type-option:has(input[type="checkbox"]:checked) {
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked):hover {
+            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-desc {
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .yard-type-option.checked {
+            background: var(--dark);
+            border-color: var(--dark);
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .yard-type-option.checked:hover {
+            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .yard-type-option.checked .yard-type-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .yard-type-option.checked .yard-type-desc {
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .yard-type-name {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #1a1a1a;
+            transition: var(--transition);
+        }
+
+        .yard-type-desc {
+            font-size: 0.65rem;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Form Hint */
+        .form-hint {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .optional-label {
+            display: block;
+            margin-top: 1.5rem;
+            margin-bottom: 0.7rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Challenges Grid - Apple Style */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin: 0.9rem 0;
+        }
+
+        .challenge-option {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.9rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .challenge-option:hover {
+            border-color: var(--primary);
+            background: #f0f0f0;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .challenge-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* When checkbox is checked, change container background to black */
+        .challenge-option input[type="checkbox"]:checked {
+            background: var(--dark);
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) {
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            color: white;
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked):hover {
+            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-name {
+            color: white;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-desc {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-price {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .challenge-option.checked {
+            background: var(--dark);
+            border-color: var(--dark);
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .challenge-option.checked:hover {
+            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .challenge-option.checked .challenge-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .challenge-option.checked .challenge-desc {
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .challenge-option.checked .challenge-price {
+            color: var(--primary);
+            opacity: 1;
+            font-weight: 700;
+        }
+
+        .challenge-name {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            transition: var(--transition);
+        }
+
+        .challenge-desc {
+            font-size: 0.65rem;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .challenge-price {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b85538;
+            margin-top: 0.3rem;
+            transition: var(--transition);
+        }
+
+        /* Yard Condition Section */
+        .condition-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin: 0.9rem 0;
+        }
+
+        .condition-option {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            padding: 0.9rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .condition-option:hover {
+            border-color: var(--primary);
+            background: #f0f0f0;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .condition-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .condition-option:has(input[type="radio"]:checked) {
+            background: var(--dark);
+            border-color: var(--dark);
+            color: white;
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .condition-option:has(input[type="radio"]:checked):hover {
+            box-shadow: 0 12px 28px rgba(26, 26, 26, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .condition-option:has(input[type="radio"]:checked) .condition-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .condition-option:has(input[type="radio"]:checked) .condition-desc {
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .condition-option:has(input[type="radio"]:checked) .condition-fee {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .condition-name {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            transition: var(--transition);
+        }
+
+        .condition-desc {
+            font-size: 0.65rem;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .condition-fee {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b85538;
+            margin-top: 0.3rem;
+            transition: var(--transition);
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .progress-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem;
+            background: #252525;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .progress-step.active {
+            border-color: var(--primary);
+            background: rgba(255, 217, 244, 0.1);
+        }
+
+        .progress-step.completed {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .progress-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--border);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .progress-step.active .progress-number {
+            background: var(--primary);
+            color: #1a1a1a;
+        }
+
+        .progress-step.completed .progress-number {
+            background: #4caf50;
+            color: white;
+        }
+
+        .progress-step.completed .progress-number::after {
+            content: '✓';
+        }
+
+        .progress-step.completed .progress-number {
+            font-size: 0;
+        }
+
+        .progress-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: white;
+            letter-spacing: 0.05em;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .progress-status {
+            font-size: 0.65rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .progress-step.active .progress-status {
+            color: var(--primary);
+        }
+
+        .progress-step.completed .progress-status {
+            color: #4caf50;
+        }
+
+        @media (max-width: 768px) {
+            .progress-indicator {
+                margin-bottom: 1.8rem;
+                gap: 0.6rem;
+            }
+
+            .progress-step {
+                padding: 0.7rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .progress-number {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.8rem;
+            }
+
+            .progress-text {
+                display: none;
+            }
+
+            .progress-label {
+                display: none;
+            }
+        }
+
+        /* Section Headers with Icons */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 1.8rem;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Price Insight Cards */
+        .price-insight {
+            display: flex;
+            gap: 0.6rem;
+            padding: 0.7rem 0.8rem;
+            background: rgba(255, 217, 244, 0.15);
+            border: 1px solid rgba(255, 217, 244, 0.4);
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            color: #FFD9F4;
+            font-weight: 600;
+        }
+
+        .price-insight::before {
+            content: '💡';
+            flex-shrink: 0;
+        }
+
+        /* Conversion Sweetener */
+        .conversion-sweetener {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 217, 244, 0.15) 0%, rgba(255, 217, 244, 0.05) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .sweetener-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sweetener-icon {
+            font-size: 2.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .sweetener-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .sweetener-headline {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.08em;
+        }
+
+        .sweetener-savings {
+            font-size: 0.8rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .sweetener-savings-amount {
+            font-size: 0.75rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 768px) {
+            .conversion-sweetener {
+                margin-top: 1.5rem;
+                padding: 1.2rem;
+            }
+
+            .sweetener-content {
+                gap: 0.8rem;
+            }
+
+            .sweetener-icon {
+                font-size: 2rem;
+            }
+
+            .sweetener-headline {
+                font-size: 0.85rem;
+            }
+
+            .sweetener-savings {
+                font-size: 0.75rem;
+            }
+
+            .sweetener-savings-amount {
+                font-size: 0.7rem;
+            }
+        }
+
+        .quote-breakdown {
+            background: #252525;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .quote-breakdown:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(255, 217, 244, 0.2);
+        }
+
+        .breakdown-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .breakdown-label {
+            color: #ccc;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .breakdown-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .breakdown-divider {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 0.6rem 0 0.4rem 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .breakdown-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 2px solid var(--primary);
+        }
+
+        .total-label {
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.05em;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .total-amount {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 2rem;
+            font-family: 'Space Mono', monospace;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .quote-info {
+            text-align: center;
+            color: #ccc;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* CTA Button - Premium */
+        .cta-button {
+            width: 100%;
+            padding: 1.3rem;
+            background: #1a1a1a;
+            color: white;
+            border: 3px solid var(--primary);
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 217, 244, 0.3), var(--shadow-md);
+            position: relative;
+        }
+
+        .cta-button:hover:not(:disabled) {
+            background: #252525;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 217, 244, 0.5), var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .cta-button:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .cta-button:disabled {
+            background: #333333;
+            cursor: not-allowed;
+            opacity: 0.6;
+            border-color: #555555;
+            box-shadow: none;
+        }
+
+        .cta-button:disabled:hover {
+            transform: none;
+        }
+
+        /* Form Message */
+        .form-message {
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .form-message.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            box-shadow: 0 4px 12px rgba(21, 87, 36, 0.1);
+        }
+
+        .form-message.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 4px 12px rgba(114, 28, 36, 0.1);
+        }
+
+        /* Footer */
+        .footer-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 217, 244, 0.2);
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 0.05em;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff4444 !important;
+            box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.1) !important;
+        }
+
+        .yard-type-grid.error,
+        .challenges-grid.error {
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            padding: 1rem;
+            background: rgba(255, 68, 68, 0.05);
+        }
+
+        .error-label {
+            color: #ff4444;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .error-label.show {
+            display: block;
+        }
+
+        #submitMessage {
+            font-size: 0.8rem;
+            color: #ff4444;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            display: none;
+            padding: 1rem;
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            border-radius: 6px;
+        }
+
+        #submitMessage.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .button-group {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .button-group {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .yard-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .header-bar {
+                padding: 1rem;
+                font-size: 0.7rem;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                min-width: auto;
+            }
+
+            .mission-box {
+                padding: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .mission-title {
+                font-size: 1.3rem;
+            }
+
+            .mission-text {
+                font-size: 0.9rem;
+            }
+
+            .quote-breakdown {
+                padding: 1.8rem;
+            }
+
+            .total-amount {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 1.1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .header-bar {
+                padding: 0.8rem;
+                font-size: 0.65rem;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .yard-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .challenge-option {
+                padding: 1rem;
+            }
+
+            .challenge-name {
+                font-size: 0.9rem;
+            }
+
+            .challenge-desc {
+                font-size: 0.7rem;
+            }
+
+            .challenge-price {
+                font-size: 0.75rem;
+            }
+
+            .yard-type-option {
+                padding: 1rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .yard-type-name {
+                font-size: 0.85rem;
+            }
+
+            .yard-type-desc {
+                font-size: 0.7rem;
+            }
+
+            .btn {
+                padding: 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            .btn-small-text {
+                font-size: 0.6rem;
+            }
+
+            .control-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .control-label {
+                font-size: 0.7rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group label {
+                font-size: 0.8rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .mission-box {
+                padding: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .mission-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .mission-text {
+                font-size: 0.85rem;
+            }
+
+            .quote-breakdown {
+                padding: 1.5rem;
+            }
+
+            .total-amount {
+                font-size: 1.3rem;
+            }
+
+            .cta-button {
+                padding: 0.95rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Bar -->
+    <div class="header-bar">
+        <div class="website">WWW.SHESCOOPS.ORG</div>
+        <div class="tagline">POOP. DONE. FOR GOOD.</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Title -->
+        <h1 class="main-title">pricing.</h1>
+
+        <!-- SECTION 1: CALCULATOR -->
+        <div class="section calculator-section">
+            <!-- Section Header -->
+            <div class="section-header">
+                <h2 class="section-title">Your Service Needs</h2>
+            </div>
+
+            <!-- Service Frequency -->
+            <div class="control-group">
+                <div class="control-label">Service Frequency</div>
+                <div class="button-group">
+                    <button class="btn active" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
+                    <button class="btn" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
+                    <button class="btn" onclick="setFrequency(2); updateCalculation();">BI-WEEKLY</button>
+                </div>
+            </div>
+
+            <!-- Yard Size -->
+            <div class="control-group">
+                <div class="control-label">Yard Size</div>
+                <div class="button-group">
+                    <button class="btn" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
+                    <button class="btn active" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
+                    <button class="btn" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
+                    <button class="btn" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
+                </div>
+            </div>
+
+            <!-- Number of Dogs -->
+            <div class="control-group">
+                <div class="control-label">Number of Dogs</div>
+                <div class="slider-container">
+                    <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
+                    <div class="slider-labels">
+                        <span>1-2</span>
+                        <span>3-4</span>
+                        <span>5+</span>
+                    </div>
+                    <div class="paw-display" id="pawDisplay">🐾</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Box -->
+        <div class="mission-box">
+            <div class="mission-title">EVERY SCOOP SAVES LIVES</div>
+            <div class="mission-text">
+                A portion of every booking goes directly to our partner 501(c)(3) dog rescue, helping abused and neglected dogs find loving homes.
+            </div>
+        </div>
+
+        <!-- SECTION 2: FORM -->
+        <div class="section form-section">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-step active" id="step1">
+                    <div class="progress-number">1</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Service Setup</div>
+                        <div class="progress-status">In Progress</div>
+                    </div>
+                </div>
+                <div class="progress-step" id="step2">
+                    <div class="progress-number">2</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Your Property</div>
+                        <div class="progress-status">Next</div>
+                    </div>
+                </div>
+                <div class="progress-step" id="step3">
+                    <div class="progress-number">3</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Get Quote</div>
+                        <div class="progress-status">Final Step</div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="quoteForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Street address for service" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Yard Type:</label>
+                    <p class="form-hint">Select all that apply</p>
+                    <div class="yard-type-grid">
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="grass" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Grass</span>
+                            <span class="yard-type-desc">Easy to scoop</span>
+                            <span class="price-insight">No extra charge</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="rocks" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Rocks</span>
+                            <span class="yard-type-desc">Need to search</span>
+                            <span class="price-insight">+10% to price</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="woodchips" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Chips</span>
+                            <span class="yard-type-desc">Harder to spot</span>
+                            <span class="price-insight">+15% to price</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="plants" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Plants</span>
+                            <span class="yard-type-desc">Under vegetation</span>
+                            <span class="price-insight">+25% to price</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Poop Challenges:</label>
+                    <p class="form-hint">Select all that apply</p>
+                    <div class="challenges-grid">
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="scattered" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Scattered</span>
+                            <span class="challenge-desc">All over the yard</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="bushes" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">In Bushes</span>
+                            <span class="challenge-desc">Hidden in plants</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="hardaccess" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Hard Access</span>
+                            <span class="challenge-desc">Tight spaces</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="largedog" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Large Dog</span>
+                            <span class="challenge-desc">High volume</span>
+                        </label>
+                    </div>
+                    <label for="otherChallenges" class="optional-label">Other issues (optional):</label>
+                    <textarea id="otherChallenges" name="otherChallenges" placeholder="Anything else we should know?" onchange="updateQuoteDisplay();"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Yard Condition:</label>
+                    <p class="form-hint">When was your yard last professionally cleaned?</p>
+                    <div class="condition-grid">
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="fresh" onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Recently Cleaned</span>
+                            <span class="condition-desc">Within 2 weeks</span>
+                            <span class="condition-fee">No fee</span>
+                        </label>
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="moderate" onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Few Weeks Ago</span>
+                            <span class="condition-desc">2-8 weeks</span>
+                            <span class="condition-fee">+$100</span>
+                        </label>
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="neglected" onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Long Time / Never</span>
+                            <span class="condition-desc">8+ weeks or no record</span>
+                            <span class="condition-fee">+$200</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Hidden fields for form submission -->
+                <input type="hidden" id="serviceType" name="serviceType" value="Weekly">
+                <input type="hidden" id="dogsCount" name="dogsCount" value="1">
+                <input type="hidden" id="yardSize" name="yardSize" value="medium">
+                <input type="hidden" id="monthlyQuote" name="monthlyQuote" value="$160">
+            </form>
+
+            <div id="formMessage" class="form-message" style="display:none;"></div>
+        </div>
+
+        <!-- SECTION 3: FINAL PRICING -->
+        <div class="section pricing-summary-section">
+            <div class="quote-breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Base Service:</span>
+                    <span class="breakdown-value" id="baseServiceDisplay">$160</span>
+                </div>
+
+                <div class="breakdown-divider">Adjustments for your property:</div>
+
+                <div class="breakdown-item" id="yardTypeAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="yardTypeLabel"></span>
+                    <span class="breakdown-value" id="yardTypeAmount"></span>
+                </div>
+
+                <div class="breakdown-item" id="specialAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="specialLabel"></span>
+                    <span class="breakdown-value" id="specialAmount"></span>
+                </div>
+
+                <div class="breakdown-total">
+                    <span class="total-label">TOTAL MONTHLY:</span>
+                    <span class="total-amount" id="totalMonthlyDisplay">$160</span>
+                </div>
+
+                <div class="breakdown-divider" id="oneTimeDivider" style="display:none;">One-Time Fees:</div>
+
+                <div class="breakdown-item" id="initialCleanupAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="initialCleanupLabel"></span>
+                    <span class="breakdown-value" id="initialCleanupAmount"></span>
+                </div>
+            </div>
+
+            <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET MY QUOTE & PAYMENT INFO</button>
+            <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-info">
+            ✨ NEW CUSTOMERS GET $20 OFF YOUR FIRST MONTH | Questions? Text (614) 918-7667
+        </div>
+    </div>
+
+    <script>
+        // Pricing Model
+        const prices = {
+            1: { name: 'Weekly', base: 160, dogsMultiplier: 40 },
+            2: { name: 'Bi-weekly', base: 120, dogsMultiplier: 20 },
+            3: { name: '2x Weekly', base: 240, dogsMultiplier: 80 }
+        };
+
+        const yardSizes = {
+            small: { name: 'Kiba', multiplier: 0.85 },
+            medium: { name: 'Lexi', multiplier: 1.0 },
+            large: { name: 'Kenzo', multiplier: 1.25 },
+            xlarge: { name: 'AKKA', multiplier: 1.5 }
+        };
+
+        let selectedFrequency = 1;
+        let selectedYardSize = 'medium';
+        let selectedDogs = 1;
+
+        // Set yard size and update display
+        function setYardSize(size) {
+            selectedYardSize = size;
+            document.querySelectorAll('.button-group')[1].querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Set frequency and update display
+        function setFrequency(freq) {
+            selectedFrequency = freq;
+            document.querySelectorAll('.button-group')[0].querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Set dogs from slider
+        function setDogsSlider(value) {
+            const dogCounts = [1.5, 3.5, 5];
+            selectedDogs = dogCounts[value];
+            updatePawDisplay();
+        }
+
+        // Update paw display
+        function updatePawDisplay() {
+            const sliderValue = parseInt(document.getElementById('dogsSlider').value);
+            const dogLabels = ['🐾', '🐾🐾', '🐾🐾🐾'];
+            document.getElementById('pawDisplay').textContent = dogLabels[sliderValue];
+        }
+
+        // Calculate base price
+        function calculateBasePrice() {
+            const priceModel = prices[selectedFrequency];
+            const yardMultiplier = yardSizes[selectedYardSize].multiplier;
+            
+            const basePrice = priceModel.base * yardMultiplier;
+            const extraDogs = Math.max(0, selectedDogs - 1) * priceModel.dogsMultiplier * yardMultiplier;
+            const monthlyTotal = Math.round(basePrice + extraDogs);
+
+            return monthlyTotal;
+        }
+
+        // Update calculation display
+        function updateCalculation() {
+            const basePrice = calculateBasePrice();
+            document.getElementById('baseServiceDisplay').textContent = '$' + basePrice;
+            document.getElementById('totalMonthlyDisplay').textContent = '$' + basePrice;
+            
+            // Update hidden fields
+            const freq = prices[selectedFrequency].name;
+            const yard = yardSizes[selectedYardSize].name;
+            document.getElementById('serviceType').value = freq;
+            document.getElementById('dogsCount').value = selectedDogs.toFixed(1);
+            document.getElementById('yardSize').value = yard;
+            document.getElementById('monthlyQuote').value = '$' + basePrice;
+
+            // Update progress - Step 1 is always done when user selects service
+            const step1 = document.getElementById('step1');
+            step1.classList.add('completed');
+            step1.querySelector('.progress-status').textContent = 'Complete';
+        }
+
+        // Calculate adjustments based on form inputs
+        function calculateAdjustments() {
+            const basePrice = calculateBasePrice();
+            let yardTypeMultiplier = 1.0;
+            let challengeMultiplier = 1.0;
+
+            // Check yard type - use highest multiplier if multiple selected
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value);
+            
+            if (yardTypes.length > 0) {
+                // Find the highest multiplier among selected types
+                let maxMultiplier = 1.0;
+                yardTypes.forEach(type => {
+                    if (type === 'rocks') maxMultiplier = Math.max(maxMultiplier, 1.25);
+                    else if (type === 'woodchips') maxMultiplier = Math.max(maxMultiplier, 1.15);
+                    else if (type === 'plants') maxMultiplier = Math.max(maxMultiplier, 1.30);
+                    else if (type === 'grass') maxMultiplier = Math.max(maxMultiplier, 1.0);
+                });
+                yardTypeMultiplier = maxMultiplier;
+            }
+
+            // Check challenges - ONLY if checkbox is actually checked
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]:checked');
+            const numChallenges = challengeCheckboxes.length;
+            
+            // Each challenge adds exactly 15%
+            // 0 challenges: 1.0x (base, no multiplier)
+            // 1 challenge: 1.15x
+            // 2 challenges: 1.30x
+            // 3 challenges: 1.45x
+            // 4 challenges: 1.60x
+            challengeMultiplier = 1.0 + (numChallenges * 0.15);
+
+            return {
+                basePrice: basePrice,
+                yardTypeMultiplier: yardTypeMultiplier,
+                challengeMultiplier: challengeMultiplier,
+                numChallenges: numChallenges,
+                yardTypes: yardTypes
+            };
+        }
+
+        // Update quote display with adjustments
+        function updateQuoteDisplay() {
+            const adjustments = calculateAdjustments();
+            const basePrice = adjustments.basePrice;
+            const yardTypeMultiplier = adjustments.yardTypeMultiplier;
+            const challengeMultiplier = adjustments.challengeMultiplier;
+            const numChallenges = adjustments.numChallenges;
+            const yardTypes = adjustments.yardTypes;
+            
+            const finalPrice = Math.round(basePrice * yardTypeMultiplier * challengeMultiplier);
+
+            // Display base price
+            document.getElementById('baseServiceDisplay').textContent = '$' + basePrice;
+
+            // Display yard type adjustment
+            if (yardTypeMultiplier > 1.0 && yardTypes.length > 0) {
+                const yardAdjustment = Math.round(basePrice * (yardTypeMultiplier - 1));
+                const percentage = Math.round((yardTypeMultiplier - 1) * 100);
+                const typeNames = yardTypes.join(', ');
+                document.getElementById('yardTypeLabel').textContent = `Yard type (${typeNames}, +${percentage}%):`;
+                document.getElementById('yardTypeAmount').textContent = '+$' + yardAdjustment;
+                document.getElementById('yardTypeAdjustment').style.display = 'flex';
+            } else {
+                document.getElementById('yardTypeAdjustment').style.display = 'none';
+            }
+
+            // Display challenge adjustment
+            if (numChallenges > 0) {
+                const afterYardType = Math.round(basePrice * yardTypeMultiplier);
+                const challengeAdjustment = Math.round(afterYardType * (challengeMultiplier - 1));
+                const percentage = numChallenges * 15;
+                const pluralText = numChallenges === 1 ? 'challenge' : 'challenges';
+                document.getElementById('specialLabel').textContent = `Poop challenges (${numChallenges} ${pluralText}, +${percentage}%):`;
+                document.getElementById('specialAmount').textContent = '+$' + challengeAdjustment;
+                document.getElementById('specialAdjustment').style.display = 'flex';
+            } else {
+                document.getElementById('specialAdjustment').style.display = 'none';
+            }
+
+            // Display initial cleanup fee
+            const yardCondition = document.querySelector('input[name="yardCondition"]:checked');
+            let initialCleanupFee = 0;
+            if (yardCondition) {
+                if (yardCondition.value === 'moderate') {
+                    initialCleanupFee = 100;
+                } else if (yardCondition.value === 'neglected') {
+                    initialCleanupFee = 200;
+                }
+            }
+
+            if (initialCleanupFee > 0) {
+                const conditionLabel = yardCondition.closest('.condition-option').querySelector('.condition-name').textContent;
+                document.getElementById('initialCleanupLabel').textContent = `Initial cleanup (${conditionLabel}):`;
+                document.getElementById('initialCleanupAmount').textContent = '+$' + initialCleanupFee;
+                document.getElementById('initialCleanupAdjustment').style.display = 'flex';
+                document.getElementById('oneTimeDivider').style.display = 'block';
+            } else {
+                document.getElementById('initialCleanupAdjustment').style.display = 'none';
+                document.getElementById('oneTimeDivider').style.display = 'none';
+            }
+
+            // Display total
+            document.getElementById('totalMonthlyDisplay').textContent = '$' + finalPrice;
+            document.getElementById('monthlyQuote').value = '$' + finalPrice;
+        }
+
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const dogsCount = document.getElementById('dogsCount').value;
+            const yardSize = document.getElementById('yardSize').value;
+            
+            // Get selected challenges
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]:checked');
+            const challenges = Array.from(challengeCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Get other challenges notes
+            const otherChallenges = document.getElementById('otherChallenges').value;
+
+            // Get yard condition and calculate initial cleanup fee
+            const yardConditionRadio = document.querySelector('input[name="yardCondition"]:checked');
+            let yardCondition = 'Not selected';
+            let initialCleanupFee = 0;
+            if (yardConditionRadio) {
+                yardCondition = yardConditionRadio.closest('.condition-option').querySelector('.condition-name').textContent;
+                if (yardConditionRadio.value === 'moderate') {
+                    initialCleanupFee = 100;
+                } else if (yardConditionRadio.value === 'neglected') {
+                    initialCleanupFee = 200;
+                }
+            }
+
+            // Get adjustments for email
+            const adjustments = calculateAdjustments();
+            const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier * adjustments.challengeMultiplier);
+
+            // Send via Formspree
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('address', address);
+            formData.append('serviceType', serviceType);
+            formData.append('dogsCount', dogsCount);
+            formData.append('yardSize', yardSize);
+            formData.append('yardType', yardTypes);
+            formData.append('challenges', challenges);
+            formData.append('otherChallenges', otherChallenges);
+            formData.append('yardCondition', yardCondition);
+            formData.append('initialCleanupFee', '$' + initialCleanupFee);
+            formData.append('monthlyQuote', finalPrice);
+            formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
+            formData.append('_replyto', email || 'no-email@provided.com');
+
+            fetch('https://formspree.io/f/meoqvdzq', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    const messageDiv = document.getElementById('formMessage');
+                    messageDiv.className = 'form-message success';
+                    messageDiv.textContent = '✓ Thank you! Your quote has been sent. We\'ll email you shortly with payment details!';
+                    messageDiv.style.display = 'block';
+
+                    document.getElementById('quoteForm').reset();
+                    messageDiv.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                const messageDiv = document.getElementById('formMessage');
+                messageDiv.className = 'form-message error';
+                messageDiv.textContent = '✗ Sorry, something went wrong. Please try again or email us at she.scoops.poop@gmail.com';
+                messageDiv.style.display = 'block';
+            });
+        }
+
+        // Submit form function
+        function submitForm() {
+            const address = document.getElementById('address').value.trim();
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const hasYardType = yardTypeCheckboxes.length > 0;
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenge"]:checked');
+            const hasChallenges = challengeCheckboxes.length > 0;
+
+            let hasErrors = false;
+            const submitMessage = document.getElementById('submitMessage');
+            const addressInput = document.getElementById('address');
+            const yardTypeGrid = document.querySelector('.yard-type-grid');
+            const challengesGrid = document.querySelector('.challenges-grid');
+
+            // Clear previous error states
+            addressInput.classList.remove('error');
+            yardTypeGrid.classList.remove('error');
+            challengesGrid.classList.remove('error');
+
+            // Check address
+            if (!address) {
+                addressInput.classList.add('error');
+                hasErrors = true;
+            }
+
+            // Check yard type
+            if (!hasYardType) {
+                yardTypeGrid.classList.add('error');
+                hasErrors = true;
+            }
+
+            // Check challenges (optional, but if required uncomment)
+            // if (!hasChallenges) {
+            //     challengesGrid.classList.add('error');
+            //     hasErrors = true;
+            // }
+
+            // Show error message if there are errors
+            if (hasErrors) {
+                submitMessage.classList.add('show');
+                submitMessage.textContent = 'Please fill in all required fields (Address, Yard Type, and Poop Challenges)';
+                return; // Don't submit
+            }
+
+            // If no errors, hide message and submit
+            submitMessage.classList.remove('show');
+            document.getElementById('quoteForm').dispatchEvent(new Event('submit'));
+        }
+
+        // Check if form is complete and enable/disable submit button
+        function checkFormComplete() {
+            const address = document.getElementById('address').value.trim();
+            const addressInput = document.getElementById('address');
+            const yardTypeGrid = document.querySelector('.yard-type-grid');
+            const challengesGrid = document.querySelector('.challenges-grid');
+            
+            // Check yard type - at least one checkbox must be checked
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const hasYardType = yardTypeCheckboxes.length > 0;
+
+            // Check challenges
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenge"]:checked');
+            const hasChallenges = challengeCheckboxes.length > 0;
+
+            // Check if required fields are filled (Address and Yard Type required)
+            const isComplete = address && hasYardType;
+
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Enable/disable button based on required fields
+            if (isComplete) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+
+            // Clear error states when user fills in fields
+            if (address) {
+                addressInput.classList.remove('error');
+            }
+            if (hasYardType) {
+                yardTypeGrid.classList.remove('error');
+            }
+            if (hasChallenges) {
+                challengesGrid.classList.remove('error');
+            }
+
+            // Update progress steps
+            updateProgressSteps(address, hasYardType, isComplete);
+        }
+
+        function updateProgressSteps(address, hasYardType, isComplete) {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+
+            // Step 1: Service Basics (Frequency, Dogs, Yard Size) - Always visible in calculator
+            step1.classList.add('completed');
+            step1.querySelector('.progress-status').textContent = 'Complete';
+
+            // Step 2: Your Property (Address + Yard Type)
+            if (hasYardType && address) {
+                step2.classList.add('completed');
+                step2.classList.remove('active');
+                step2.querySelector('.progress-status').textContent = 'Complete';
+                step3.classList.add('active');
+                step3.querySelector('.progress-status').textContent = 'In Progress';
+            } else {
+                step2.classList.add('active');
+                step2.classList.remove('completed');
+                step2.querySelector('.progress-status').textContent = 'In Progress';
+                step3.classList.remove('active', 'completed');
+                step3.querySelector('.progress-status').textContent = 'Final Step';
+            }
+
+            // Step 3: Get Quote (Submit) - Active when form complete
+            if (isComplete) {
+                step3.classList.add('active');
+                step3.querySelector('.progress-status').textContent = 'Ready to Submit';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCalculation();
+            updateQuoteDisplay();
+
+            // Add event listeners to only the required form fields
+            document.getElementById('address').addEventListener('input', checkFormComplete);
+            
+            // Add event listeners to yard type checkboxes
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]');
+            yardTypeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Toggle checked class on this option (allow multiple)
+                    this.closest('label').classList.toggle('checked', this.checked);
+                    checkFormComplete();
+                });
+            });
+
+            // Challenge checkboxes update quote and toggle checked class
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]');
+            challengeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Toggle checked class on parent label
+                    this.closest('label').classList.toggle('checked', this.checked);
+                    updateQuoteDisplay();
+                    checkFormComplete();
+                });
+            });
+
+            // Initial check
+            checkFormComplete();
+        });
+    </script>
+</body>
+</html>
