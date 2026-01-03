@@ -997,6 +997,17 @@
             transition: var(--transition);
         }
 
+        @media (max-width: 768px) {
+            .pricing-summary-section {
+                position: sticky;
+                top: 4rem;
+                z-index: 100;
+                background: #1a1a1a;
+                padding: 1rem 0;
+                margin: -1rem 0 1rem 0;
+            }
+        }
+
         .quote-breakdown:hover {
             border-color: var(--primary);
             box-shadow: var(--shadow-lg);
@@ -1061,9 +1072,26 @@
         .total-amount {
             font-weight: 700;
             color: var(--primary);
-            font-size: 2rem;
+            font-size: 3rem;
             font-family: 'Space Mono', monospace;
             animation: slideInRight 0.5s ease-out;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .quote-info {
@@ -1091,6 +1119,29 @@
             text-transform: uppercase;
             box-shadow: 0 0 20px rgba(255, 217, 244, 0.3), var(--shadow-md);
             position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .cta-secondary {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 217, 244, 0.1);
+            transform: translateY(-2px);
         }
 
         .cta-button:hover:not(:disabled) {
@@ -1276,6 +1327,21 @@
         }
 
         @media (max-width: 768px) {
+            .cta-button {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                border-radius: 0;
+                z-index: 1000;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .pricing-summary-section {
+                padding-bottom: 5rem;
+            }
+
             .main-title {
                 font-size: 2.2rem;
                 margin-bottom: 2rem;
@@ -1548,20 +1614,22 @@
                 </div>
             </div>
 
+            <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1.5rem;">⏱️ Takes 2 minutes</p>
+
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
-                    <label for="name">Name:</label>
+                    <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
                     <input type="text" id="name" name="name">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Email <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
                         <input type="email" id="email" name="email">
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone:</label>
+                        <label for="phone">Phone <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
                         <input type="tel" id="phone" name="phone">
                     </div>
                 </div>
@@ -1575,8 +1643,8 @@
                     <label>Yard Type:</label>
                     <p class="form-hint">Select all that apply</p>
                     <div class="yard-type-grid">
-                        <label class="yard-type-option">
-                            <input type="checkbox" name="yardType" value="grass" onchange="updateQuoteDisplay();"> 
+                        <label class="yard-type-option checked">
+                            <input type="checkbox" name="yardType" value="grass" checked onchange="updateQuoteDisplay();"> 
                             <span class="yard-type-name">Grass</span>
                             <span class="yard-type-desc">Easy to scoop</span>
                             <span class="price-insight">No extra charge</span>
@@ -1603,7 +1671,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Poop Challenges:</label>
+                    <label>Special Conditions:</label>
                     <p class="form-hint">Select all that apply</p>
                     <div class="challenges-grid">
                         <label class="challenge-option">
@@ -1635,11 +1703,11 @@
                     <label>Yard Condition:</label>
                     <p class="form-hint">When was your yard last professionally cleaned?</p>
                     <div class="condition-grid">
-                        <label class="condition-option">
-                            <input type="radio" name="yardCondition" value="fresh" onchange="updateQuoteDisplay();"> 
-                            <span class="condition-name">Recently Cleaned</span>
-                            <span class="condition-desc">Within 2 weeks</span>
-                            <span class="condition-fee">No fee</span>
+                        <label class="condition-option" style="background: var(--primary); border: 3px solid var(--primary); color: #1a1a1a;">
+                            <input type="radio" name="yardCondition" value="fresh" checked onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name" style="color: #1a1a1a;">Recently Cleaned</span>
+                            <span class="condition-desc" style="color: #1a1a1a;">Within 2 weeks</span>
+                            <span class="condition-fee" style="color: #1a1a1a;">No fee</span>
                         </label>
                         <label class="condition-option">
                             <input type="radio" name="yardCondition" value="moderate" onchange="updateQuoteDisplay();"> 
@@ -1688,7 +1756,11 @@
 
                 <div class="breakdown-total">
                     <span class="total-label">TOTAL MONTHLY:</span>
-                    <span class="total-amount" id="totalMonthlyDisplay">$160</span>
+                    <span class="total-amount" id="totalMonthlyDisplay">$160<span class="savings-badge" style="display:none;" id="savingsBadge">SAVE $20</span></span>
+                </div>
+
+                <div style="text-align: center; margin-top: 0.8rem; color: #4caf50; font-size: 0.85rem; font-weight: 600;" id="firstMonthPreview" style="display:none;">
+                    🎉 First month: <span id="firstMonthAmount">$140</span> (after $20 new customer discount)
                 </div>
 
                 <div class="breakdown-divider" id="oneTimeDivider" style="display:none;">One-Time Fees:</div>
@@ -1699,7 +1771,8 @@
                 </div>
             </div>
 
-            <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET MY QUOTE & PAYMENT INFO</button>
+            <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET MY QUOTE - DON'T MISS OUT ON $20 OFF!</button>
+            <a href="sms:+16149187667?body=Hi! I'd like a quote for dog waste removal service." class="cta-secondary">📱 Or Text Me My Quote (614) 918-7667</a>
             <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
         </div>
 
@@ -1904,8 +1977,13 @@
             }
 
             // Display total
-            document.getElementById('totalMonthlyDisplay').textContent = '$' + finalPrice;
+            document.getElementById('totalMonthlyDisplay').innerHTML = '$' + finalPrice + '<span class="savings-badge" id="savingsBadge">SAVE $20</span>';
             document.getElementById('monthlyQuote').value = '$' + finalPrice;
+            
+            // Show first month preview with discount
+            const firstMonthPrice = finalPrice - 20;
+            document.getElementById('firstMonthAmount').textContent = '$' + firstMonthPrice;
+            document.getElementById('firstMonthPreview').style.display = 'block';
         }
 
         // Handle form submission
@@ -1971,13 +2049,14 @@
             })
             .then(response => {
                 if (response.ok) {
-                    const messageDiv = document.getElementById('formMessage');
-                    messageDiv.className = 'form-message success';
-                    messageDiv.textContent = '✓ Thank you! Your quote has been sent. We\'ll email you shortly with payment details!';
-                    messageDiv.style.display = 'block';
-
-                    document.getElementById('quoteForm').reset();
-                    messageDiv.scrollIntoView({ behavior: 'smooth' });
+                    // Redirect to thank you page with details
+                    const queryParams = new URLSearchParams({
+                        price: finalPrice,
+                        discount: 20,
+                        service: serviceType,
+                        address: address
+                    });
+                    window.location.href = 'thank-you.html?' + queryParams.toString();
                 } else {
                     throw new Error('Form submission failed');
                 }
@@ -2103,6 +2182,13 @@
                 step2.querySelector('.progress-status').textContent = 'In Progress';
                 step3.classList.remove('active', 'completed');
                 step3.querySelector('.progress-status').textContent = 'Final Step';
+                
+                // Auto-focus on address field when step 2 becomes active
+                if (step2.classList.contains('active') && !address) {
+                    setTimeout(() => {
+                        document.getElementById('address').focus();
+                    }, 300);
+                }
             }
 
             // Step 3: Get Quote (Submit) - Active when form complete

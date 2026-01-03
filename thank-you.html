@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - She Scoops</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #4caf50;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: scaleIn 0.5s ease-out 0.2s both;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            color: #FFD9F4;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .price-box {
+            background: #252525;
+            border: 2px solid #FFD9F4;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #FFD9F4;
+            font-weight: 700;
+        }
+
+        .discount {
+            color: #4caf50;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .next-steps {
+            text-align: left;
+            background: #252525;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .next-steps h2 {
+            font-family: 'Fredoka', sans-serif;
+            color: #FFD9F4;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .next-steps ol {
+            padding-left: 1.5rem;
+        }
+
+        .next-steps li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: #FFD9F4;
+            color: #1a1a1a;
+            border: 3px solid #FFD9F4;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFD9F4;
+            border: 2px solid #FFD9F4;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 217, 244, 0.1);
+        }
+
+        .referral {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 217, 244, 0.15) 0%, rgba(255, 217, 244, 0.05) 100%);
+            border: 2px solid #FFD9F4;
+            border-radius: 12px;
+        }
+
+        .referral h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: #FFD9F4;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="checkmark">✓</div>
+        
+        <h1>Thank You!</h1>
+        <p class="subtitle">Your quote request has been received</p>
+
+        <div class="price-box">
+            <div class="price" id="monthlyPrice">$160/month</div>
+            <div class="discount">🎉 First month: <span id="firstMonth">$140</span> (save $20!)</div>
+        </div>
+
+        <div class="next-steps">
+            <h2>What Happens Next:</h2>
+            <ol>
+                <li><strong>We'll email you within 24 hours</strong> with payment details and scheduling options</li>
+                <li><strong>Choose your start date</strong> and set up your preferred payment method</li>
+                <li><strong>Enjoy your clean yard!</strong> Our team will handle the rest</li>
+            </ol>
+        </div>
+
+        <div class="buttons">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=She+Scoops+Service+Start&details=Dog+waste+removal+service+begins" target="_blank" class="btn btn-primary">📅 Add to Google Calendar</a>
+            <a href="sms:+16149187667?body=I just submitted a quote request and have a question..." class="btn btn-secondary">💬 Text Us: (614) 918-7667</a>
+        </div>
+
+        <div class="referral">
+            <h3>💰 Earn $20 for Each Referral</h3>
+            <p>Know someone who needs this service? Refer them and you'll both get $20 off!</p>
+        </div>
+
+        <p style="margin-top: 2rem; color: #888; font-size: 0.85rem;">
+            Questions? Email <a href="mailto:she.scoops.poop@gmail.com" style="color: #FFD9F4;">she.scoops.poop@gmail.com</a>
+        </p>
+    </div>
+
+    <script>
+        // Get query parameters
+        const params = new URLSearchParams(window.location.search);
+        const price = params.get('price');
+        const discount = params.get('discount') || 20;
+        const service = params.get('service');
+
+        if (price) {
+            document.getElementById('monthlyPrice').textContent = `$${price}/month`;
+            document.getElementById('firstMonth').textContent = `$${price - discount}`;
+        }
+    </script>
+</body>
+</html>
