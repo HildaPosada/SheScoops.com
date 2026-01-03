@@ -2406,35 +2406,6 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: SERVICE DETAILS -->
-                <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
-                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">Your Service Needs</h3>
-                </div>
-
-                <div class="form-group">
-                    <label>Service Frequency:</label>
-                    <p class="form-hint">How often should we visit?</p>
-                    <div class="button-group">
-                        <button class="btn active" type="button" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
-                        <button class="btn" type="button" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
-                        <button class="btn" type="button" onclick="setFrequency(2); updateCalculation();">BI-WEEKLY</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Number of Dogs:</label>
-                    <p class="form-hint">How many pups do you have?</p>
-                    <div class="slider-container">
-                        <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
-                        <div class="slider-labels">
-                            <span>1-2</span>
-                            <span>3-4</span>
-                            <span>5+</span>
-                        </div>
-                        <div class="paw-display" id="pawDisplay"><img src="Paws.png" alt="paw"></div>
-                    </div>
-                </div>
-
                 <!-- STEP 4: PROPERTY DETAILS -->
                 <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
                     <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">Property Details <span style="opacity: 0.6; font-size: 0.75rem;">(Optional)</span></h3>
