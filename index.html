@@ -1936,15 +1936,18 @@
         }
 
         .yard-size-suggestion {
-            background: rgba(255, 217, 244, 0.1);
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            padding: 0.8rem 1rem;
-            margin: 0.8rem 0;
             display: none;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4caf50;
+            border-radius: 6px;
             animation: slideInDown 0.3s ease-out;
+            font-size: 0.8rem;
+            color: #4caf50;
+            font-weight: 600;
         }
 
         .yard-size-suggestion.show {
@@ -1952,7 +1955,7 @@
         }
 
         .suggestion-icon {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
 
         .suggestion-text {
@@ -1961,32 +1964,8 @@
 
         .suggestion-title {
             font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .suggestion-desc {
-            font-size: 0.75rem;
-            color: #aaa;
-        }
-
-        .suggestion-btn {
-            padding: 0.5rem 1rem;
-            background: var(--primary);
-            color: #1a1a1a;
-            border: none;
-            border-radius: 6px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .suggestion-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(255, 217, 244, 0.4);
+            color: #4caf50;
+            font-size: 0.85rem;
         }
 
         .yard-type-grid.error,
@@ -2285,16 +2264,14 @@
                             style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
                         >
                         <div class="address-autocomplete" id="addressAutocomplete"></div>
-                    </div>
-                    
-                    <!-- Calculator Yard Size Suggestion -->
-                    <div class="yard-size-suggestion" id="yardSizeSuggestion" style="margin-top: 1rem;">
-                        <div class="suggestion-icon">🏡</div>
-                        <div class="suggestion-text">
-                            <div class="suggestion-title" id="suggestionTitle">Suggested Yard Size: Medium</div>
-                            <div class="suggestion-desc" id="suggestionDesc">Based on your address location</div>
+                        
+                        <!-- Inline Yard Size Confirmation -->
+                        <div class="yard-size-suggestion" id="yardSizeSuggestion">
+                            <div class="suggestion-icon">✓</div>
+                            <div class="suggestion-text">
+                                <span class="suggestion-title" id="suggestionTitle">Medium yard detected</span>
+                            </div>
                         </div>
-                        <button class="suggestion-btn" onclick="applySuggestion()" type="button">Apply</button>
                     </div>
                 </div>
 
@@ -2966,37 +2943,26 @@
             }
             
             // Store suggestion
-            calculatorSuggestedYardSize = size;
+            suggestedYardSize = size;
             
-            // Display suggestion
-            document.getElementById('calculatorSuggestionTitle').textContent = `Suggested: ${sizeName}`;
-            document.getElementById('calculatorSuggestionDesc').textContent = `Based on ${reason}`;
-            document.getElementById('calculatorYardSizeSuggestion').classList.add('show');
-        }
-
-        function applyCalculatorSuggestion() {
-            if (calculatorSuggestedYardSize) {
-                setYardSize(calculatorSuggestedYardSize);
-                updateCalculation();
-                
-                // Hide suggestion
-                document.getElementById('calculatorYardSizeSuggestion').classList.remove('show');
-                
-                // Visual feedback
-                const yardSizeButtons = document.querySelectorAll('.button-group .btn');
-                yardSizeButtons.forEach((btn) => {
-                    const btnText = btn.textContent.toLowerCase();
-                    if ((calculatorSuggestedYardSize === 'small' && btnText.includes('kiba')) ||
-                        (calculatorSuggestedYardSize === 'medium' && btnText.includes('lexi')) ||
-                        (calculatorSuggestedYardSize === 'large' && btnText.includes('kenzo')) ||
-                        (calculatorSuggestedYardSize === 'xlarge' && btnText.includes('akka'))) {
-                        btn.style.transform = 'scale(1.05)';
-                        setTimeout(() => {
-                            btn.style.transform = '';
-                        }, 200);
-                    }
-                });
-            }
+            // Auto-apply the suggestion
+            setYardSize(size);
+            updateCalculation();
+            
+            // Display inline confirmation
+            const sizeNames = {
+                'small': 'Small',
+                'medium': 'Medium',
+                'large': 'Large',
+                'xlarge': 'XLarge'
+            };
+            document.getElementById('suggestionTitle').textContent = `✓ ${sizeNames[size]} yard detected`;
+            document.getElementById('yardSizeSuggestion').classList.add('show');
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                document.getElementById('yardSizeSuggestion').classList.remove('show');
+            }, 3000);
         }
 
         function hideCalculatorAutocomplete() {
