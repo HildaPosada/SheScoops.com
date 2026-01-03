@@ -2355,14 +2355,14 @@
                 <div class="progress-step active" id="step1">
                     <div class="progress-number">1</div>
                     <div class="progress-text">
-                        <div class="progress-label">Service Setup</div>
+                        <div class="progress-label">Your Address</div>
                         <div class="progress-status">In Progress</div>
                     </div>
                 </div>
                 <div class="progress-step" id="step2">
                     <div class="progress-number">2</div>
                     <div class="progress-text">
-                        <div class="progress-label">Your Property</div>
+                        <div class="progress-label">Service Details</div>
                         <div class="progress-status">Next</div>
                     </div>
                 </div>
@@ -2375,10 +2375,92 @@
                 </div>
             </div>
 
-            <p style="text-align: center; color: var(--primary); font-size: 0.9rem; margin: 1rem 0 1.5rem 0; font-weight: 600;">⏱️ Quick & Easy - Just 2 Minutes!</p>
+            <p style="text-align: center; color: var(--primary); font-size: 0.9rem; margin: 1rem 0 0.5rem 0; font-weight: 600;">⏱️ Quick & Easy - Just 2 Minutes!</p>
             <p style="text-align: center; color: #aaa; font-size: 0.8rem; margin-bottom: 1.5rem;">💡 Most fields are optional - we just need your address to get started</p>
 
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
+                <!-- STEP 1: ADDRESS FIRST -->
+                <div style="background: rgba(255, 217, 244, 0.05); border: 2px solid var(--primary); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.2rem; margin-bottom: 0.5rem; text-align: center;">🏠 Where is your yard?</h3>
+                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1rem;">We'll auto-detect your property size</p>
+                    
+                    <div class="form-group" style="position: relative; margin-bottom: 0;">
+                        <label for="address" style="font-size: 1rem; margin-bottom: 0.8rem;">Address: <span class="required-badge">Required</span></label>
+                        <input 
+                            type="text" 
+                            id="address" 
+                            name="address" 
+                            placeholder="Start typing your address..." 
+                            required 
+                            autocomplete="off"
+                            oninput="handleAddressInput(event)"
+                            onblur="setTimeout(() => hideAutocomplete(), 200)"
+                            style="font-size: 1.05rem; padding: 1rem;"
+                        >
+                        <div class="address-autocomplete" id="addressAutocomplete"></div>
+                    </div>
+
+                    <!-- Yard Size Suggestion -->
+                    <div class="yard-size-suggestion" id="yardSizeSuggestion" style="margin-top: 1rem;">
+                        <div class="suggestion-icon">🏡</div>
+                        <div class="suggestion-text">
+                            <div class="suggestion-title" id="suggestionTitle">Suggested Yard Size: Medium</div>
+                            <div class="suggestion-desc" id="suggestionDesc">Based on your address location</div>
+                        </div>
+                        <button class="suggestion-btn" onclick="applySuggestion()" type="button">Apply</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: CONFIRM YARD SIZE -->
+                <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
+                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.5rem; text-align: center;">Confirm Your Property Size</h3>
+                    <p style="text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1.5rem;">Auto-detected or choose manually</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Property Size: <span class="required-badge">Required</span></label>
+                    <div class="button-group">
+                        <button class="btn" type="button" onclick="setYardSize('small'); updateCalculation();">KIBA ▪️<span class="btn-small-text">¼ acre or less</span></button>
+                        <button class="btn active" type="button" onclick="setYardSize('medium'); updateCalculation();">LEXI ◾<span class="btn-small-text">¼ - ½ acre</span></button>
+                        <button class="btn" type="button" onclick="setYardSize('large'); updateCalculation();">KENZO ⬛<span class="btn-small-text">½ - 1 acre</span></button>
+                        <button class="btn" type="button" onclick="setYardSize('xlarge'); updateCalculation();">AKKA ⬛<span class="btn-small-text">1+ acres</span></button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: SERVICE DETAILS -->
+                <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
+                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">Your Service Needs</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>Service Frequency:</label>
+                    <p class="form-hint">How often should we visit?</p>
+                    <div class="button-group">
+                        <button class="btn active" type="button" onclick="setFrequency(1); updateCalculation();">WEEKLY</button>
+                        <button class="btn" type="button" onclick="setFrequency(3); updateCalculation();">2X WEEKLY</button>
+                        <button class="btn" type="button" onclick="setFrequency(2); updateCalculation();">BI-WEEKLY</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Dogs:</label>
+                    <p class="form-hint">How many pups do you have?</p>
+                    <div class="slider-container">
+                        <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();">
+                        <div class="slider-labels">
+                            <span>1-2</span>
+                            <span>3-4</span>
+                            <span>5+</span>
+                        </div>
+                        <div class="paw-display" id="pawDisplay"><img src="Paws.png" alt="paw"></div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: PROPERTY DETAILS -->
+                <div style="border-top: 2px solid #444; margin: 2rem 0; padding-top: 2rem;">
+                    <h3 style="font-family: 'Fredoka', sans-serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem; text-align: center;">Property Details <span style="opacity: 0.6; font-size: 0.75rem;">(Optional)</span></h3>
+                </div>
+
                 <div class="form-group">
                     <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
                     <input type="text" id="name" name="name">
@@ -2396,34 +2478,9 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="position: relative;">
-                    <label for="address">Address: <span class="required-badge">Required</span></label>
-                    <input 
-                        type="text" 
-                        id="address" 
-                        name="address" 
-                        placeholder="Start typing your address..." 
-                        required 
-                        autocomplete="off"
-                        oninput="handleAddressInput(event)"
-                        onblur="setTimeout(() => hideAutocomplete(), 200)"
-                    >
-                    <div class="address-autocomplete" id="addressAutocomplete"></div>
-                </div>
-
-                <!-- Yard Size Suggestion -->
-                <div class="yard-size-suggestion" id="yardSizeSuggestion">
-                    <div class="suggestion-icon">🏡</div>
-                    <div class="suggestion-text">
-                        <div class="suggestion-title" id="suggestionTitle">Suggested Yard Size: Medium</div>
-                        <div class="suggestion-desc" id="suggestionDesc">Based on your address location</div>
-                    </div>
-                    <button class="suggestion-btn" onclick="applySuggestion()" type="button">Apply</button>
-                </div>
-
                 <div class="form-group">
-                    <label>Yard Type: <span class="required-badge">Required</span></label>
-                    <p class="form-hint">Select all that apply</p>
+                    <label>Ground Surface:</label>
+                    <p class="form-hint">What type of ground covers your yard?</p>
                     <div class="yard-type-grid">
                         <label class="yard-type-option checked">
                             <input type="checkbox" name="yardType" value="grass" checked onchange="updateQuoteDisplay();"> 
@@ -2482,8 +2539,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Yard Condition:</label>
-                    <p class="form-hint">When was your yard last professionally cleaned?</p>
+                    <label>Last Professional Cleaning:</label>
+                    <p class="form-hint">When was your yard last professionally cleaned? (Affects one-time cleanup fee)</p>
                     <div class="condition-grid">
                         <label class="condition-option" style="background: var(--primary); border: 3px solid var(--primary); color: #1a1a1a;">
                             <input type="radio" name="yardCondition" value="fresh" checked onchange="updateQuoteDisplay();"> 
