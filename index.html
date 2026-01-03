@@ -105,14 +105,6 @@
             border: none;
         }
 
-        .section-title {
-            display: none;
-        }
-
-        .section-subtitle {
-            display: none;
-        }
-
         /* Calculator Section */
         .calculator-section {
             background: transparent;
@@ -1934,37 +1926,8 @@
             color: #888;
         }
 
-        .yard-size-suggestion {
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            padding: 0.5rem 0.8rem;
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid #4caf50;
-            border-radius: 6px;
-            animation: slideInDown 0.3s ease-out;
-            font-size: 0.8rem;
-            color: #4caf50;
-            font-weight: 600;
-        }
-
         .yard-size-suggestion.show {
-            display: flex;
-        }
-
-        .suggestion-icon {
-            font-size: 1rem;
-        }
-
-        .suggestion-text {
-            flex: 1;
-        }
-
-        .suggestion-title {
-            font-weight: 600;
-            color: #4caf50;
-            font-size: 0.85rem;
+            display: flex !important;
         }
 
         .yard-type-grid.error,
@@ -2658,13 +2621,9 @@
                     }
                 );
                 
-                if (!response.ok) {
-                    console.error('Address API response not OK:', response.status);
-                    return;
-                }
+                if (!response.ok) return;
                 
                 const results = await response.json();
-                console.log('Address search results:', results); // Debug log
                 displayAutocomplete(results);
             } catch (error) {
                 console.error('Address search error:', error);
@@ -2675,18 +2634,12 @@
         function displayAutocomplete(results) {
             const dropdown = document.getElementById('addressAutocomplete');
             
-            if (!dropdown) {
-                console.error('Autocomplete dropdown element not found!');
-                return;
-            }
+            if (!dropdown) return;
             
             if (!results || results.length === 0) {
-                console.log('No results to display');
                 hideAutocomplete();
                 return;
             }
-            
-            console.log('Displaying', results.length, 'results'); // Debug log
             
             // Store results globally so we can access them by index
             autocompleteResults = results;
@@ -2722,7 +2675,6 @@
             }
             
             dropdown.classList.add('show');
-            console.log('Dropdown should now be visible'); // Debug log
         }
 
         function selectAddress(index) {
