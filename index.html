@@ -704,7 +704,7 @@
         /* Yard Type Grid - Apple/Nike Style */
         .yard-type-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.5rem;
             margin-top: 0.6rem;
         }
@@ -744,33 +744,37 @@
 
         /* When checkbox is checked, change container background to pink */
         .yard-type-option:has(input[type="checkbox"]:checked) {
-            background: var(--primary);
+            background: #1a1a1a;
             border: 3px solid var(--primary);
-            color: #1a1a1a;
-            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.4);
+            color: white;
+            box-shadow: 0 0 0 2px rgba(255, 217, 244, 0.2), 0 8px 20px rgba(255, 217, 244, 0.4);
             transform: translateY(-2px);
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked):hover {
-            box-shadow: 0 12px 28px rgba(255, 217, 244, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 217, 244, 0.3), 0 12px 28px rgba(255, 217, 244, 0.5);
             transform: translateY(-4px);
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-name {
-            color: #1a1a1a;
+            color: var(--primary);
             font-weight: 700;
         }
 
         .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-desc {
-            color: #1a1a1a;
+            color: #ccc;
             opacity: 0.85;
         }
 
+        .yard-type-option:has(input[type="checkbox"]:checked) .price-insight {
+            color: var(--primary);
+        }
+
         .yard-type-option.checked {
-            background: var(--primary);
+            background: #1a1a1a;
             border: 3px solid var(--primary);
-            color: #1a1a1a;
-            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.4);
+            color: white;
+            box-shadow: 0 0 0 2px rgba(255, 217, 244, 0.2), 0 8px 20px rgba(255, 217, 244, 0.4);
             transform: translateY(-2px);
         }
 
@@ -2199,6 +2203,9 @@
                 </div>
             </div>
 
+            <p style="text-align: center; color: var(--primary); font-size: 0.9rem; margin: 1rem 0 1.5rem 0; font-weight: 600;">⏱️ Quick & Easy - Just 2 Minutes!</p>
+            <p style="text-align: center; color: #aaa; font-size: 0.8rem; margin-bottom: 1.5rem;">💡 Most fields are optional - we just need your address to get started</p>
+
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
@@ -2354,7 +2361,6 @@
                 </div>
             </div>
 
-            <p style="text-align: center; color: #888; font-size: 0.8rem; margin: 1rem 0 0.5rem 0;">⏱️ Quick & easy - takes just 2 minutes</p>
             <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET MY QUOTE - DON'T MISS OUT ON $20 OFF!</button>
             <a href="sms:+16149187667?body=Hi! I'd like a quote for dog waste removal service." class="cta-secondary">📱 Or Text Me My Quote (614) 918-7667</a>
             <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
