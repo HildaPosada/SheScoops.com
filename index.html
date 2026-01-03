@@ -2252,26 +2252,28 @@
                             <span class="tooltip-text">Type your address and we'll automatically detect your property size!</span>
                         </span>
                     </div>
-                    <div style="position: relative;">
-                        <input 
-                            type="text" 
-                            id="calculatorAddress" 
-                            placeholder="Start typing your address..." 
-                            autocomplete="off"
-                            oninput="handleAddressInput(event)"
-                            onblur="setTimeout(() => hideAutocomplete(), 200)"
-                            style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
-                        >
-                        <div class="address-autocomplete" id="addressAutocomplete"></div>
+                    <div style="display: flex; gap: 0.8rem; align-items: flex-start; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px; position: relative;">
+                            <input 
+                                type="text" 
+                                id="calculatorAddress" 
+                                placeholder="Start typing your address..." 
+                                autocomplete="off"
+                                oninput="handleAddressInput(event)"
+                                onblur="setTimeout(() => hideAutocomplete(), 200)"
+                                style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
+                            >
+                        </div>
                         
-                        <!-- Inline Yard Size Confirmation -->
-                        <div class="yard-size-suggestion" id="yardSizeSuggestion">
-                            <div class="suggestion-icon">✓</div>
-                            <div class="suggestion-text">
-                                <span class="suggestion-title" id="suggestionTitle">Medium yard detected</span>
-                            </div>
+                        <!-- Inline Yard Size Prediction Badge -->
+                        <div class="yard-size-suggestion" id="yardSizeSuggestion" style="display: none; align-items: center; gap: 0.5rem; padding: 0.85rem 1.2rem; background: rgba(76, 175, 80, 0.15); border: 2px solid #4caf50; border-radius: 8px; font-size: 0.85rem; color: #4caf50; font-weight: 600; white-space: nowrap; animation: slideInRight 0.3s ease-out;">
+                            <span style="font-size: 1.2rem;">✓</span>
+                            <span id="suggestionTitle">Medium yard detected</span>
                         </div>
                     </div>
+                    
+                    <!-- Floating Autocomplete Dropdown -->
+                    <div class="address-autocomplete" id="addressAutocomplete"></div>
                 </div>
 
                 <!-- Yard Size -->
@@ -2801,20 +2803,17 @@
             setYardSize(size);
             updateCalculation();
             
-            // Display inline confirmation
+            // Display inline confirmation badge
             const sizeNames = {
-                'small': 'Small',
-                'medium': 'Medium',
-                'large': 'Large',
-                'xlarge': 'XLarge'
+                'small': 'KIBA detected',
+                'medium': 'LEXI detected',
+                'large': 'KENZO detected',
+                'xlarge': 'AKKA detected'
             };
-            document.getElementById('suggestionTitle').textContent = `✓ ${sizeNames[size]} yard detected`;
+            document.getElementById('suggestionTitle').textContent = sizeNames[size];
             document.getElementById('yardSizeSuggestion').classList.add('show');
             
-            // Auto-hide after 3 seconds
-            setTimeout(() => {
-                document.getElementById('yardSizeSuggestion').classList.remove('show');
-            }, 3000);
+            // Keep showing so user sees confirmation
         }
 
         function hideAutocomplete() {
