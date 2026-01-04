@@ -3311,6 +3311,10 @@
             const adjustments = calculateAdjustments();
             const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier) + adjustments.challengeFees;
 
+            // Get yard types for email
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value).join(', ');
+
             // Send via Formspree
             const formData = new FormData();
             
