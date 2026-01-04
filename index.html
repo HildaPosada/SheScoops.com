@@ -3309,7 +3309,11 @@
 
             // Get adjustments for email
             const adjustments = calculateAdjustments();
-            const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier * adjustments.challengeMultiplier);
+            const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier) + adjustments.challengeFees;
+
+            // Get yard types for email
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value).join(', ');
 
             // Send via Formspree
             const formData = new FormData();
@@ -3325,7 +3329,7 @@
             formData.append('otherChallenges', otherChallenges);
             formData.append('yardCondition', yardCondition);
             formData.append('initialCleanupFee', '$' + initialCleanupFee);
-            formData.append('monthlyQuote', finalPrice);
+            formData.append('monthlyQuote', '$' + finalPrice);
             formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
             formData.append('_replyto', email || 'no-email@provided.com');
 
