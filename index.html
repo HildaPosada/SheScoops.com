@@ -3356,6 +3356,9 @@
                 // Hide loading
                 loadingOverlay.classList.remove('show');
                 
+                // Log response for debugging
+                console.log('Formspree response status:', response.status);
+                
                 if (response.ok) {
                     // Show success feedback briefly before redirect
                     const submitMessage = document.getElementById('submitMessage');
@@ -3374,16 +3377,21 @@
                         window.location.href = 'thank-you.html?' + queryParams.toString();
                     }, 1000);
                 } else {
-                    throw new Error('Form submission failed');
+                    // Log the error response
+                    response.json().then(data => {
+                        console.error('Formspree error:', data);
+                    });
+                    throw new Error('Form submission failed with status: ' + response.status);
                 }
             })
             .catch(error => {
                 // Hide loading
                 loadingOverlay.classList.remove('show');
-                const messageDiv = document.getElementById('formMessage');
-                messageDiv.className = 'form-message error';
-                messageDiv.textContent = '⚠️ Oops! There was a problem. Please try again or text us at (614) 918-7667';
-                messageDiv.style.display = 'block';
+                console.error('Submit error:', error);
+                const submitMessage = document.getElementById('submitMessage');
+                submitMessage.style.display = 'block';
+                submitMessage.textContent = '⚠️ Oops! There was a problem. Please try again or text us at (614) 918-7667';
+                submitMessage.style.color = '#ff4444';
             });
         }
 
