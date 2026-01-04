@@ -3130,6 +3130,11 @@
             document.getElementById('baseServiceDisplay').textContent = '$' + basePrice;
             document.getElementById('totalMonthlyDisplay').textContent = '$' + basePrice;
             
+            // Update first month preview with discount
+            const firstMonthPrice = basePrice - 20;
+            document.getElementById('firstMonthAmount').textContent = '$' + firstMonthPrice;
+            document.getElementById('firstMonthPreview').style.display = 'block';
+            
             // Update hidden fields
             const freq = prices[selectedFrequency].name;
             const yard = yardSizes[selectedYardSize].name;
