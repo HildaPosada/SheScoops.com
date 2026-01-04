@@ -3348,13 +3348,14 @@
             formData.append('phone', phone);
             formData.append('address', address);
 
-            // Attach photos if any
-            const photoInput = document.getElementById('yardPhotos');
-            if (photoInput && photoInput.files.length > 0) {
-                for (let i = 0; i < photoInput.files.length; i++) {
-                    formData.append('file', photoInput.files[i]);
-                }
-            }
+            // Note: File uploads disabled - requires Formspree paid plan
+            // Uncomment below if you upgrade to paid plan:
+            // const photoInput = document.getElementById('yardPhotos');
+            // if (photoInput && photoInput.files.length > 0) {
+            //     for (let i = 0; i < photoInput.files.length; i++) {
+            //         formData.append('file', photoInput.files[i]);
+            //     }
+            // }
 
             // Show loading overlay
             const loadingOverlay = document.getElementById('loadingOverlay');
