@@ -3312,21 +3312,30 @@
             const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
             const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value).join(', ');
 
+            // Determine dog bracket
+            let dogBracket = '1-2 dogs';
+            if (selectedDogs >= 5) dogBracket = '5+ dogs';
+            else if (selectedDogs >= 3) dogBracket = '3-4 dogs';
+
+            // Get yard size with category
+            const yardSizeMap = {
+                'Larry': '1/8 acre or less',
+                'Kiba': '1/8 - 1/4 acre',
+                'Kenzo': '1/4 - 1/2 acre',
+                'Akka': '1/2+ acres'
+            };
+            const yardSizeDisplay = `${yardSize} (${yardSizeMap[yardSize] || 'size pending'})`;
+
             // Send via Formspree
             const formData = new FormData();
             
-            // Customer Contact Info
+            // Email subject
             formData.append('_subject', `🐾 New Quote: $${finalPrice}/mo - ${address || 'Address pending'}`);
-            formData.append('Customer_Name', name || 'Not provided');
-            formData.append('Customer_Email', email || 'Not provided');
-            formData.append('Customer_Phone', phone || 'Not provided');
-            formData.append('_replyto', email || 'noreply@shescoops.org');
             
             // Service Details
-            formData.append('Service_Address', address);
             formData.append('Service_Frequency', serviceType);
-            formData.append('Yard_Size', yardSize);
-            formData.append('Number_of_Dogs', dogsCount);
+            formData.append('Yard_Size', yardSizeDisplay);
+            formData.append('Number_of_Dogs', dogBracket);
             
             // Yard Details
             formData.append('Ground_Surface', yardTypes || 'Grass');
@@ -3339,7 +3348,14 @@
             formData.append('Initial_Cleanup_Fee', '$' + initialCleanupFee);
             formData.append('First_Month_Total', '$' + (finalPrice + initialCleanupFee - 20) + ' (with $20 discount)');
             
-            // Legacy fields for compatibility
+            // Contact info at bottom
+            formData.append('Customer_Name', name || 'Not provided');
+            formData.append('Customer_Email', email || 'Not provided');
+            formData.append('Customer_Phone', phone || 'Not provided');
+            formData.append('Service_Address', address);
+            formData.append('_replyto', email || 'noreply@shescoops.org');
+            
+            // Legacy fields (lowercase for compatibility)
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
