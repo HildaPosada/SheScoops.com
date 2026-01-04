@@ -3530,9 +3530,12 @@
                 return; // Don't submit
             }
 
-            // If no errors, hide message and submit
+            // If no errors, hide message and call submit handler directly
             submitMessage.style.display = 'none';
-            document.getElementById('quoteForm').dispatchEvent(new Event('submit'));
+            
+            // Create a fake event object for the handler
+            const fakeEvent = { preventDefault: () => {} };
+            handleFormSubmit(fakeEvent);
         }
 
         // Check if form is complete and enable/disable submit button
