@@ -2368,6 +2368,20 @@
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
 
                 <div class="form-group">
+                    <label for="address">Address <span class="required-badge">Required</span></label>
+                    <input 
+                        type="text" 
+                        id="address" 
+                        name="address" 
+                        placeholder="Your service address" 
+                        oninput="handleAddressInput(event)"
+                        onblur="setTimeout(() => hideAutocomplete(), 200)"
+                        autocomplete="street-address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
                     <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
                     <input type="text" id="name" name="name">
                 </div>
@@ -2742,6 +2756,16 @@
 
         function handleAddressInput(event) {
             const query = event.target.value.trim();
+            
+            // Sync both address fields
+            const calculatorAddress = document.getElementById('calculatorAddress');
+            const formAddress = document.getElementById('address');
+            
+            if (event.target.id === 'calculatorAddress' && formAddress) {
+                formAddress.value = query;
+            } else if (event.target.id === 'address' && calculatorAddress) {
+                calculatorAddress.value = query;
+            }
             
             // Clear previous timeout
             clearTimeout(autocompleteTimeout);
@@ -3595,8 +3619,23 @@
             updateCalculation();
             updateQuoteDisplay();
 
-            // Add event listeners to only the required form fields
-            document.getElementById('address').addEventListener('input', checkFormComplete);
+            // Add event listeners to both address fields
+            const addressField = document.getElementById('address');
+            const calculatorAddressField = document.getElementById('calculatorAddress');
+            
+            if (addressField) {
+                addressField.addEventListener('input', checkFormComplete);
+            }
+            
+            if (calculatorAddressField) {
+                calculatorAddressField.addEventListener('input', () => {
+                    // Sync to form address field
+                    if (addressField) {
+                        addressField.value = calculatorAddressField.value;
+                    }
+                    checkFormComplete();
+                });
+            }
             
             // Add event listeners to yard type checkboxes
             const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]');
