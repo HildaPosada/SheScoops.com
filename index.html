@@ -3311,33 +3311,44 @@
             const adjustments = calculateAdjustments();
             const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier) + adjustments.challengeFees;
 
-            // Get yard types for email
-            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
-            const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value).join(', ');
-
             // Send via Formspree
             const formData = new FormData();
+            
+            // Customer Contact Info
+            formData.append('_subject', `🐾 New Quote: $${finalPrice}/mo - ${address || 'Address pending'}`);
+            formData.append('Customer_Name', name || 'Not provided');
+            formData.append('Customer_Email', email || 'Not provided');
+            formData.append('Customer_Phone', phone || 'Not provided');
+            formData.append('_replyto', email || 'noreply@shescoops.org');
+            
+            // Service Details
+            formData.append('Service_Address', address);
+            formData.append('Service_Frequency', serviceType);
+            formData.append('Yard_Size', yardSize);
+            formData.append('Number_of_Dogs', dogsCount);
+            
+            // Yard Details
+            formData.append('Ground_Surface', yardTypes || 'Grass');
+            formData.append('Special_Conditions', challenges || 'None');
+            formData.append('Additional_Notes', otherChallenges || 'None');
+            formData.append('Last_Cleaning', yardCondition);
+            
+            // Pricing Breakdown
+            formData.append('Monthly_Quote', '$' + finalPrice);
+            formData.append('Initial_Cleanup_Fee', '$' + initialCleanupFee);
+            formData.append('First_Month_Total', '$' + (finalPrice + initialCleanupFee - 20) + ' (with $20 discount)');
+            
+            // Legacy fields for compatibility
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
             formData.append('address', address);
-            formData.append('serviceType', serviceType);
-            formData.append('dogsCount', dogsCount);
-            formData.append('yardSize', yardSize);
-            formData.append('yardType', yardTypes);
-            formData.append('challenges', challenges);
-            formData.append('otherChallenges', otherChallenges);
-            formData.append('yardCondition', yardCondition);
-            formData.append('initialCleanupFee', '$' + initialCleanupFee);
-            formData.append('monthlyQuote', '$' + finalPrice);
-            formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
-            formData.append('_replyto', email || 'no-email@provided.com');
 
             // Attach photos if any
-            const photoInput = document.getElementById('photoUpload');
+            const photoInput = document.getElementById('yardPhotos');
             if (photoInput && photoInput.files.length > 0) {
                 for (let i = 0; i < photoInput.files.length; i++) {
-                    formData.append('photos', photoInput.files[i]);
+                    formData.append('file', photoInput.files[i]);
                 }
             }
 
