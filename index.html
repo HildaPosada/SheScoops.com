@@ -2367,19 +2367,8 @@
 
             <form id="quoteForm" onsubmit="handleFormSubmit(event)">
 
-                <div class="form-group">
-                    <label for="address">Address <span class="required-badge">Required</span></label>
-                    <input 
-                        type="text" 
-                        id="address" 
-                        name="address" 
-                        placeholder="Your service address" 
-                        oninput="handleAddressInput(event)"
-                        onblur="setTimeout(() => hideAutocomplete(), 200)"
-                        autocomplete="street-address"
-                        required
-                    >
-                </div>
+                <!-- Hidden address field - populated from calculator address -->
+                <input type="hidden" id="address" name="address">
 
                 <div class="form-group">
                     <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
