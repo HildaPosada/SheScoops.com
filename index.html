@@ -3348,18 +3348,12 @@
             formData.append('Initial_Cleanup_Fee', '$' + initialCleanupFee);
             formData.append('First_Month_Total', '$' + (finalPrice + initialCleanupFee - 20) + ' (with $20 discount)');
             
-            // Contact info at bottom
-            formData.append('Customer_Name', name || 'Not provided');
-            formData.append('Customer_Email', email || 'Not provided');
-            formData.append('Customer_Phone', phone || 'Not provided');
-            formData.append('Service_Address', address);
-            formData.append('_replyto', email || 'noreply@shescoops.org');
-            
-            // Legacy fields (lowercase for compatibility)
+            // Contact info (simple lowercase fields at bottom)
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
             formData.append('address', address);
+            formData.append('_replyto', email || 'noreply@shescoops.org');
 
             // Note: File uploads disabled - requires Formspree paid plan
             // Uncomment below if you upgrade to paid plan:
