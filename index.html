@@ -2519,7 +2519,7 @@
                 </div>
             </div>
 
-            <!-- PHOTO UPLOAD FEATURE - COMPACT VERSION -->
+            <!-- PHOTO UPLOAD FEATURE - DISABLED UNTIL FORMSPREE UPGRADE
             <details style="margin: 1rem 0; padding: 1rem; background: #f0f8f0; border-radius: 12px; border: 2px solid #4caf50;">
                 <summary style="cursor: pointer; font-weight: 600; font-size: 1rem; color: #4caf50; display: flex; align-items: center; gap: 0.6rem; user-select: none;">
                     📸 Share Your Yard Photos
@@ -2532,7 +2532,6 @@
                         Upload 2-4 photos to verify pricing accuracy and train our AI for better estimates.
                     </p>
                     
-                    <!-- FILE INPUT -->
                     <input 
                         type="file" 
                         id="yardPhotos" 
@@ -2553,7 +2552,6 @@
                         "
                     >
                     
-                    <!-- PHOTO PREVIEW -->
                     <div id="photoPreview" style="
                         display: grid;
                         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -2562,7 +2560,6 @@
                         min-height: 0;
                     "></div>
                     
-                    <!-- COMPACT CALIBRATION HINT -->
                     <div style="
                         background: #e8f5e9;
                         padding: 0.6rem;
@@ -2575,7 +2572,6 @@
                         </p>
                     </div>
                     
-                    <!-- ATTACH BUTTON -->
                     <button 
                         type="button"
                         onclick="attachPhotosToQuote();"
@@ -2600,6 +2596,7 @@
                     <p id="photoStatus" style="font-size: 0.8rem; color: #4caf50; margin: 0.4rem 0 0 0; text-align: center;"></p>
                 </div>
             </details>
+            END PHOTO UPLOAD FEATURE -->
 
             <div style="margin-top: 1.5rem;">
                 <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET $20 OFF: INSTANT QUOTE!</button>
