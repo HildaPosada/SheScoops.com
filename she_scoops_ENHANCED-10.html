@@ -1,0 +1,3627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>She Scoops - Premium Dog Waste Removal Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary: #FFD9F4;
+            --primary-light: #ffe8fb;
+            --primary-dark: #ff99db;
+            --secondary: #4caf50;
+            --dark: #1a1a1a;
+            --light: #252525;
+            --text: #ffffff;
+            --border: #444444;
+            --success: #4caf50;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: #1a1a1a;
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Bar - Sticky with glassmorphism */
+        .header-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(69, 69, 69, 0.5);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .website {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .website:hover {
+            color: var(--primary);
+        }
+
+        .tagline {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1.5rem;
+        }
+
+        /* Main Title - Premium Typography */
+        .main-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            animation: slideInDown 0.7s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 1.5rem;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Control Groups */
+        .control-group {
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .control-group:nth-child(1) { animation-delay: 0.1s; }
+        .control-group:nth-child(2) { animation-delay: 0.2s; }
+        .control-group:nth-child(3) { animation-delay: 0.3s; }
+
+        .control-label {
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+            display: block;
+            text-transform: uppercase;
+            color: #ffffff;
+            opacity: 1;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.65rem 0.6rem;
+            border: 2px solid #666;
+            background: #252525;
+            color: #f0f0f0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .btn:hover {
+            border-color: var(--primary);
+            background: #2d2d2d;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 217, 244, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            box-shadow: 0 6px 16px rgba(255, 217, 244, 0.4);
+            font-weight: 700;
+        }
+
+        .btn.active:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.5);
+        }
+
+        .btn.active .btn-small-text {
+            color: #1a1a1a;
+            opacity: 0.8;
+        }
+
+        .btn-small-text {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 400;
+            margin-top: 0.2rem;
+            opacity: 0.65;
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* Slider */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            cursor: pointer;
+            accent-color: var(--primary);
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--dark);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3);
+            transition: var(--transition);
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.4);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--dark);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3);
+            transition: var(--transition);
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(26, 26, 26, 0.4);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #aaa;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .paw-display {
+            text-align: center;
+            animation: pawBounce 0.4s ease-out;
+            display: flex;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+
+        .paw-display img {
+            height: 3.5rem;
+            width: auto;
+            display: inline-block;
+        }
+
+        @keyframes pawBounce {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Mission Box - Premium Card */
+        .mission-box {
+            background: var(--primary);
+            color: #1a1a1a;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.7s ease-out;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mission-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .mission-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+            color: #1a1a1a;
+        }
+
+        .mission-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            opacity: 1;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 217, 244, 0.05);
+            border-radius: 8px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: #252525;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 217, 244, 0.3);
+        }
+
+        .trust-badge-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            background: transparent;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .social-proof-text {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background: #252525;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid #444;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 217, 244, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .testimonial-location {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #1a1a1a;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            cursor: help;
+            transition: var(--transition);
+        }
+
+        .tooltip-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255, 217, 244, 0.6);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #252525;
+            color: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            width: 220px;
+            z-index: 1000;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.3s, visibility 0.3s;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--primary);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Symmetric Grid Classes */
+        .why-choose-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.6rem;
+            font-size: 0.85rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: #252525;
+            border-radius: 12px;
+            border: 2px solid #444;
+        }
+
+        /* FAQ Header - Desktop: normal, Mobile: clickable */
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .faq-header:hover {
+            opacity: 0.8;
+        }
+
+        .faq-toggle-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            display: none;
+            min-width: 20px;
+        }
+
+        .faq-section.open .faq-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* FAQ Content Wrapper - Hidden on mobile, visible on desktop */
+        .faq-content {
+            display: block;
+            max-height: 100%;
+            overflow: visible;
+            opacity: 1;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .faq-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question::before {
+            content: '▸';
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #ccc;
+            margin-left: 1.7rem;
+            margin-top: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.23, 1, 0.320, 1), opacity 0.4s ease-out, margin-top 0.4s ease-out;
+            display: block;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 1200px;
+            opacity: 1;
+            margin-top: 0.8rem;
+            overflow: visible;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #444;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Error States */
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff4444;
+            animation: shake 0.5s;
+        }
+
+        .yard-type-grid.error,
+        .challenges-grid.error {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+            animation: fadeInUp 0.3s;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            animation: fadeInUp 0.7s ease-out 0.2s both;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.9rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #ffffff;
+            font-size: 0.8rem;
+            letter-spacing: 0.01em;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.85rem 1rem;
+            border: 2px solid #555;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: #ffffff;
+            background: #252525;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(212, 105, 79, 0.1), var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .required-badge {
+            display: inline-block;
+            background: #ff4444;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            gap: 0.7rem;
+            padding: 0.7rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .checkbox-label:hover {
+            background: var(--light);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Yard Type Grid - Apple/Nike Style */
+        .yard-type-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+        }
+
+        .yard-type-option {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.08rem;
+            padding: 0.3rem 0.25rem;
+            border: 1.5px solid #555;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        .yard-type-option:hover:not(:has(input[type="checkbox"]:checked)) {
+            border-color: var(--primary);
+            background: #fafafa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .yard-type-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* CHECKED STATE - When checkbox is checked, change to dark with pink border */
+        .yard-type-option:has(input[type="checkbox"]:checked) {
+            background: #1a1a1a;
+            border: 2px solid var(--primary);
+            color: white;
+            box-shadow: 0 0 0 1.5px rgba(255, 217, 244, 0.3), 0 4px 12px rgba(255, 217, 244, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked):hover {
+            box-shadow: 0 0 0 1.5px rgba(255, 217, 244, 0.4), 0 6px 16px rgba(255, 217, 244, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked) .yard-type-desc {
+            color: #ccc;
+            opacity: 0.85;
+        }
+
+        .yard-type-option:has(input[type="checkbox"]:checked) .price-insight {
+            color: var(--primary);
+        }
+
+        .yard-type-name {
+            font-weight: 700;
+            font-size: 0.65rem;
+            color: #1a1a1a;
+            transition: var(--transition);
+            line-height: 1.1;
+        }
+
+        .yard-type-desc {
+            font-size: 0.5rem;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .form-group textarea {
+            min-height: 60px;
+            resize: vertical;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Form Hint */
+        .form-hint {
+            font-size: 0.65rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .optional-label {
+            display: block;
+            margin-top: 0.6rem;
+            margin-bottom: 0.3rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        /* Challenges Grid - Apple Style */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25rem;
+            margin: 0.3rem 0;
+            overflow: visible;
+            position: relative;
+        }
+
+        .challenge-option {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem 0.3rem;
+            border: 1.5px solid #555;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            min-height: 24px;
+            z-index: 1;
+        }
+
+        .challenge-option:hover:not(:has(input[type="checkbox"]:checked)) {
+            border-color: var(--primary);
+            background: #fafafa;
+            box-shadow: 0 2px 6px rgba(255, 217, 244, 0.25);
+            transform: translateY(-3px);
+            z-index: 10;
+        }
+
+        .challenge-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* CHECKED STATE - Primary styling */
+        .challenge-option:has(input[type="checkbox"]:checked) {
+            background: var(--primary);
+            border: 2px solid var(--primary);
+            color: #1a1a1a;
+            box-shadow: 0 0 0 1px rgba(255, 217, 244, 0.4), 0 3px 8px rgba(255, 217, 244, 0.25);
+            transform: translateY(-1px);
+            font-weight: 700;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked):hover {
+            box-shadow: 0 0 0 1.5px rgba(255, 217, 244, 0.5), 0 4px 12px rgba(255, 217, 244, 0.35);
+            transform: translateY(-3px);
+            z-index: 10;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-name {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-desc {
+            display: none;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked):hover .challenge-desc {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+
+        .challenge-option:has(input[type="checkbox"]:checked) .challenge-price {
+            display: none;
+        }
+
+        .challenge-name {
+            font-weight: 700;
+            font-size: 0.6rem;
+            transition: color 0.2s ease;
+            position: relative;
+            z-index: 2;
+            color: #1a1a1a;
+        }
+
+        .challenge-desc {
+            display: none;
+            font-size: 0.5rem;
+            color: #666;
+            font-weight: 500;
+            transition: var(--transition);
+            line-height: 1;
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 100;
+            pointer-events: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .challenge-option:hover .challenge-desc {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .challenge-price {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b85538;
+            margin-top: 0.3rem;
+            transition: var(--transition);
+        }
+
+        /* Yard Condition Section */
+        .condition-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.3rem;
+            margin: 0.4rem 0;
+        }
+
+        .condition-option {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.3rem 0.4rem;
+            border: 1.5px solid #555;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+            min-height: 26px;
+            text-align: center;
+        }
+
+        .condition-option:hover:not(:has(input[type="radio"]:checked)) {
+            border-color: var(--primary);
+            background: #fafafa;
+            box-shadow: 0 2px 6px rgba(255, 217, 244, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .condition-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* CHECKED STATE - This is the key state */
+        .condition-option:has(input[type="radio"]:checked) {
+            background: var(--primary);
+            border: 2px solid var(--primary);
+            color: #1a1a1a;
+            box-shadow: 0 0 0 1px rgba(255, 217, 244, 0.4), 0 3px 8px rgba(255, 217, 244, 0.25);
+            transform: translateY(-1px);
+            font-weight: 700;
+        }
+
+        .condition-option:has(input[type="radio"]:checked):hover {
+            box-shadow: 0 0 0 1.5px rgba(255, 217, 244, 0.5), 0 4px 12px rgba(255, 217, 244, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .condition-option:has(input[type="radio"]:checked) .condition-name {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .condition-name {
+            font-weight: 700;
+            font-size: 0.65rem;
+            color: #1a1a1a;
+            transition: color 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .condition-desc {
+            font-size: 0.5rem;
+            color: white;
+            font-weight: 600;
+            display: none;
+            position: absolute;
+            bottom: -26px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 100;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            animation: none;
+        }
+
+        .condition-option:hover .condition-desc {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+
+        .condition-fee {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: #999;
+            display: none;
+        }
+
+        .condition-option:has(input[type="radio"]:checked) .condition-fee {
+            display: none;
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .progress-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem;
+            background: #252525;
+            border-radius: 8px;
+            border: 2px solid #555;
+            transition: var(--transition);
+        }
+
+        .progress-step.active {
+            border-color: var(--primary);
+            background: rgba(255, 217, 244, 0.1);
+        }
+
+        .progress-step.completed {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .progress-number {
+            width: 2.2rem;
+            height: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #555;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .progress-step.active .progress-number {
+            background: var(--primary);
+            color: #1a1a1a;
+        }
+
+        .progress-step.completed .progress-number {
+            background: #4caf50;
+            color: white;
+            font-size: 0;
+        }
+
+        .progress-step.completed .progress-number::after {
+            content: '✓';
+            font-size: 1rem;
+        }
+
+        .progress-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: white;
+            letter-spacing: 0.05em;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .progress-status {
+            font-size: 0.65rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .progress-step.active .progress-status {
+            color: var(--primary);
+        }
+
+        .progress-step.completed .progress-status {
+            color: #4caf50;
+        }
+
+        @media (max-width: 768px) {
+            .progress-indicator {
+                margin-bottom: 1.8rem;
+                gap: 0.6rem;
+            }
+
+            .progress-step {
+                padding: 0.7rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .progress-number {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.8rem;
+            }
+
+            .progress-text {
+                display: none;
+            }
+
+            .progress-label {
+                display: none;
+            }
+        }
+
+        /* Section Headers with Icons */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 0.45rem;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        /* Price Insight Cards */
+        .price-insight {
+            font-size: 0.5rem;
+            color: #999;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        /* Conversion Sweetener */
+        .conversion-sweetener {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 217, 244, 0.15) 0%, rgba(255, 217, 244, 0.05) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .sweetener-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sweetener-icon {
+            font-size: 2.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .sweetener-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .sweetener-headline {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.08em;
+        }
+
+        .sweetener-savings {
+            font-size: 0.8rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .sweetener-savings-amount {
+            font-size: 0.75rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 768px) {
+            .conversion-sweetener {
+                margin-top: 1.5rem;
+                padding: 1.2rem;
+            }
+
+            .sweetener-content {
+                gap: 0.8rem;
+            }
+
+            .sweetener-icon {
+                font-size: 2rem;
+            }
+
+            .sweetener-headline {
+                font-size: 0.85rem;
+            }
+
+            .sweetener-savings {
+                font-size: 0.75rem;
+            }
+
+            .sweetener-savings-amount {
+                font-size: 0.7rem;
+            }
+        }
+
+        .quote-breakdown {
+            background: #252525;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 0.8rem 0;
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-summary-section {
+                position: sticky;
+                top: 4rem;
+                z-index: 100;
+                background: #1a1a1a;
+                padding: 1rem 0;
+                margin: -1rem 0 1rem 0;
+            }
+        }
+
+        .quote-breakdown:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(255, 217, 244, 0.2);
+        }
+
+        .breakdown-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .breakdown-label {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .breakdown-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .breakdown-divider {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 0.6rem 0 0.4rem 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .breakdown-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 2px solid var(--primary);
+        }
+
+        .total-label {
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.05em;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .total-amount {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 3rem;
+            font-family: 'Space Mono', monospace;
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .quote-info {
+            text-align: center;
+            color: #ccc;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* CTA Button - Premium */
+        .cta-button {
+            width: 100%;
+            padding: 1.3rem;
+            background: var(--primary);
+            color: #1a1a1a;
+            border: 3px solid var(--primary);
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 217, 244, 0.5), var(--shadow-md);
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .cta-secondary {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 217, 244, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .cta-button:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 217, 244, 0.7), var(--shadow-lg);
+            border-color: var(--primary-dark);
+        }
+
+        .cta-button:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .cta-button:disabled {
+            background: #333333;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.6;
+            border-color: #555555;
+            box-shadow: none;
+        }
+
+        .cta-button:disabled:hover {
+            transform: none;
+        }
+
+        /* Form Message */
+        .form-message {
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .form-message.success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            box-shadow: 0 4px 12px rgba(21, 87, 36, 0.1);
+        }
+
+        .form-message.error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 4px 12px rgba(114, 28, 36, 0.1);
+        }
+
+        /* Footer */
+        .footer-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 217, 244, 0.2);
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 0.05em;
+            animation: fadeIn 0.8s ease-out 0.8s both;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #444;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #888;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            background: transparent;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .social-proof-text {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #1a1a1a;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            cursor: help;
+            transition: var(--transition);
+        }
+
+        .tooltip-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(255, 217, 244, 0.6);
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #252525;
+            color: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            width: 220px;
+            z-index: 1000;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.3s, visibility 0.3s;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--primary);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #444;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff4444 !important;
+            box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.1) !important;
+        }
+
+        /* Address Autocomplete Dropdown */
+        .address-autocomplete {
+            position: fixed;
+            background: #1a1a1a;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 99999;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 217, 244, 0.3);
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .address-autocomplete.show {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+            color: #ffffff;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            background: #1a1a1a;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover {
+            background: rgba(255, 217, 244, 0.1);
+            color: var(--primary);
+        }
+
+        .autocomplete-item .address-main {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .autocomplete-item .address-details {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .yard-size-suggestion.show {
+            display: flex !important;
+        }
+
+        .yard-type-grid.error,
+        .challenges-grid.error {
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            padding: 1rem;
+            background: rgba(255, 68, 68, 0.05);
+        }
+
+        .error-label {
+            color: #ff4444;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .error-label.show {
+            display: block;
+        }
+
+        #submitMessage {
+            font-size: 0.8rem;
+            color: #ff4444;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            display: none;
+            padding: 1rem;
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            border-radius: 6px;
+        }
+
+        #submitMessage.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .button-group {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cta-button {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0;
+                border-radius: 0;
+                z-index: 1000;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+                padding: 1.2rem 1rem;
+                font-size: 0.9rem;
+                line-height: 1.2;
+                white-space: normal;
+            }
+
+            /* Hero Section Mobile */
+            [style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            [style*="grid-template-columns: 1fr 1fr"] h1 {
+                font-size: 2rem !important;
+            }
+
+            .pricing-summary-section {
+                padding-bottom: 5rem;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .button-group {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .yard-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .header-bar {
+                padding: 1rem;
+                font-size: 0.7rem;
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                min-width: auto;
+            }
+
+            .mission-box {
+                padding: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .mission-title {
+                font-size: 1.3rem;
+            }
+
+            .mission-text {
+                font-size: 0.9rem;
+            }
+
+            /* Mobile FAQ - Two-Level Accordion */
+            .faq-toggle-icon {
+                display: block;
+            }
+
+            .faq-section {
+                padding: 1rem 1.2rem;
+                margin-top: 0.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .faq-header {
+                cursor: pointer;
+                padding: 0;
+            }
+
+            .faq-title {
+                margin-bottom: 0;
+                font-size: 1.3rem;
+            }
+
+            .faq-content {
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            }
+
+            .faq-section.open .faq-content {
+                max-height: 2000px;
+                opacity: 1;
+                margin-top: 1.2rem;
+            }
+
+            .quote-breakdown {
+                padding: 1.8rem;
+            }
+
+            .total-amount {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .header-bar {
+                padding: 0.8rem;
+                font-size: 0.65rem;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .yard-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            .challenges-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+                overflow: visible;
+            }
+
+            .challenge-option {
+                padding: 0.3rem 0.35rem;
+                font-size: 0.7rem;
+            }
+
+            .challenge-name {
+                font-size: 0.7rem;
+            }
+
+            .challenge-desc {
+                display: none;
+            }
+
+            .challenge-price {
+                font-size: 0.85rem;
+            }
+
+            /* Mobile Responsive Symmetric Grids */
+            .why-choose-grid {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            }
+
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .yard-type-option {
+                padding: 1rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .yard-type-name {
+                font-size: 0.85rem;
+            }
+
+            .yard-type-desc {
+                font-size: 0.7rem;
+            }
+
+            .btn {
+                padding: 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            .btn-small-text {
+                font-size: 0.6rem;
+            }
+
+            .control-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .control-label {
+                font-size: 0.7rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group label {
+                font-size: 0.8rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .mission-box {
+                padding: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .mission-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .mission-text {
+                font-size: 0.85rem;
+            }
+
+            .quote-breakdown {
+                padding: 1.5rem;
+            }
+
+            .total-amount {
+                font-size: 1.3rem;
+            }
+
+            .cta-button {
+                padding: 1rem 0.8rem;
+                font-size: 0.85rem;
+                letter-spacing: 0.03em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Bar -->
+    <div class="header-bar">
+        <div class="website">WWW.SHESCOOPS.ORG</div>
+        <div class="tagline">POOP. DONE. FOR GOOD.</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Title -->
+        <h1 class="main-title">pricing.</h1>
+
+        <!-- WHY SHE SCOOPS - MINIMAL, NON-REDUNDANT VERSION -->
+        <div style="background: linear-gradient(135deg, rgba(255, 217, 244, 0.08), rgba(255, 217, 244, 0.04)); border: 2px solid rgba(255, 217, 244, 0.2); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 1.5rem; animation: fadeInDown 0.6s ease-out;">
+            <div style="text-align: center; margin-bottom: 0.6rem;">
+                <h2 style="font-size: 1.1rem; color: #FFD9F4; margin-bottom: 0.2rem; font-family: 'Fredoka', sans-serif; font-weight: 700;">Why Choose She Scoops?</h2>
+            </div>
+
+            <div class="why-choose-grid">
+                <div style="text-align: center;"><div style="font-size: 1.3rem;">👩‍💼</div>Female-Owned</div>
+                <div style="text-align: center;"><div style="font-size: 1.3rem;">🔒</div>Insured</div>
+                <div style="text-align: center;"><div style="font-size: 1.3rem;">✅</div>100% Guaranteed</div>
+                <div style="text-align: center;"><div style="font-size: 1.3rem;">🌱</div>Eco-Friendly</div>
+                <div style="text-align: center;"><div style="font-size: 1.3rem;">🐕</div>Saves Dogs</div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('calculator')">Get Quote</button>
+            <button class="tab-btn" onclick="switchTab('mission')">Our Mission</button>
+        </div>
+
+        <!-- Calculator Tab -->
+        <div id="calculator-tab" class="tab-content active">
+            <!-- SECTION 1: CALCULATOR -->
+            <div class="section calculator-section">
+                <!-- Address Input for Calculator -->
+                <div class="control-group">
+                    <div class="control-label">
+                        📍 Enter Your Address
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Type your address and we'll automatically detect your property size!</span>
+                        </span>
+                    </div>
+                    <div style="display: flex; gap: 0.8rem; align-items: stretch;">
+                        <div style="flex: 1; min-width: 0; position: relative;">
+                            <input 
+                                type="text" 
+                                id="calculatorAddress" 
+                                name="address"
+                                placeholder="Start typing your address..." 
+                                autocomplete="street-address"
+                                oninput="handleAddressInput(event)"
+                                onblur="setTimeout(() => hideAutocomplete(), 200)"
+                                style="width: 100%; padding: 0.85rem 1rem; border: 2px solid #555; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 1rem; color: #ffffff; background: #252525; transition: var(--transition); box-shadow: var(--shadow-sm);"
+                            >
+                        </div>
+                        
+                        <!-- Inline Yard Size Prediction Badge -->
+                        <div class="yard-size-suggestion" id="yardSizeSuggestion" style="display: none; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.2rem; background: rgba(76, 175, 80, 0.15); border: 2px solid #4caf50; border-radius: 8px; font-size: 0.85rem; color: #4caf50; font-weight: 600; white-space: nowrap; animation: slideInRight 0.3s ease-out;">
+                            <span style="font-size: 1.2rem;">✓</span>
+                            <span id="suggestionTitle">KENZO detected</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Autocomplete Dropdown -->
+                    <div class="address-autocomplete" id="addressAutocomplete"></div>
+                </div>
+
+                <!-- Yard Size -->
+                <div class="control-group">
+                    <div class="control-label">
+                        🏡 Confirm Your Yard Size
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Larger yards take more time, so they cost more. Don't worry—we'll show you the exact price adjustment!</span>
+                        </span>
+                    </div>
+                    <div class="button-group" id="yardSizeButtons" role="radiogroup" aria-labelledby="yard-size-label">
+                        <button class="btn" onclick="setYardSize('small'); updateCalculation();" role="radio" aria-checked="false" aria-label="LARRY: Tiny yard - 1/8 acre or less">LARRY ▪️<span class="btn-small-text">1/8 acre or less</span></button>
+                        <button class="btn" onclick="setYardSize('small-med'); updateCalculation();" role="radio" aria-checked="false" aria-label="KIBA: Small yard - 1/8 to 1/4 acre">KIBA ▪️<span class="btn-small-text">1/8 - 1/4 acre</span></button>
+                        <button class="btn active" onclick="setYardSize('medium'); updateCalculation();" role="radio" aria-checked="true" aria-label="KENZO: Medium yard - 1/4 to 1/2 acre">KENZO ◾<span class="btn-small-text">1/4 - 1/2 acre</span></button>
+                        <button class="btn" onclick="setYardSize('large'); updateCalculation();" role="radio" aria-checked="false" aria-label="AKKA: Large yard - 1/2 acres or more">AKKA ⬛<span class="btn-small-text">1/2+ acres</span></button>
+                    </div>
+                </div>
+
+                <!-- Service Frequency -->
+                <div class="control-group">
+                    <div class="control-label">
+                        📅 Service Frequency
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">Weekly service is recommended for optimal yard cleanliness. Bi-weekly works great for smaller yards or fewer dogs.</span>
+                        </span>
+                    </div>
+                    <div class="button-group" role="radiogroup" aria-labelledby="frequency-label">
+                        <button class="btn active" onclick="setFrequency(1); updateCalculation();" role="radio" aria-checked="true" aria-label="Weekly service - once per week">WEEKLY</button>
+                        <button class="btn" onclick="setFrequency(3); updateCalculation();" role="radio" aria-checked="false" aria-label="Two times per week service">2X WEEKLY</button>
+                        <button class="btn" onclick="setFrequency(2); updateCalculation();" role="radio" aria-checked="false" aria-label="Bi-weekly service - once every two weeks">BI-WEEKLY</button>
+                    </div>
+                </div>
+
+                <!-- Number of Dogs -->
+                <div class="control-group">
+                    <div class="control-label">
+                        🐕 How Many Dogs?
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">More dogs = more waste to clean. Our pricing adjusts based on the number of pups in your pack!</span>
+                        </span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="dogsSlider" min="0" max="2" value="0" step="1" class="slider" oninput="setDogsSlider(this.value); updateCalculation();" aria-label="Select number of dogs: 1-2, 3-4, or 5 or more" aria-valuemin="0" aria-valuemax="2" aria-valuenow="0">
+                        <div class="slider-labels">
+                            <span>1-2</span>
+                            <span>3-4</span>
+                            <span>5+</span>
+                        </div>
+                        <div class="paw-display" id="pawDisplay"><img src="Paws.png" alt="number of dogs selected"></div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Mission Box -->
+        <!-- SECTION 2: FORM -->
+        <div class="section form-section">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-step active" id="step1">
+                    <div class="progress-number">1</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Your Address</div>
+                        <div class="progress-status">In Progress</div>
+                    </div>
+                </div>
+                <div class="progress-step" id="step2">
+                    <div class="progress-number">2</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Service Details</div>
+                        <div class="progress-status">Next</div>
+                    </div>
+                </div>
+                <div class="progress-step" id="step3">
+                    <div class="progress-number">3</div>
+                    <div class="progress-text">
+                        <div class="progress-label">Get Quote</div>
+                        <div class="progress-status">Final Step</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: var(--primary); font-size: 0.9rem; margin: 1rem 0 0.8rem 0; font-weight: 600;">⏱️ Quick & Easy: Just 2 Minutes!</p>
+
+            <form id="quoteForm" onsubmit="handleFormSubmit(event)">
+
+                <div class="form-group">
+                    <label for="name">Name <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone <span style="opacity: 0.6; font-size: 0.75rem;">(optional)</span></label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ground Surface:</label>
+                    <p class="form-hint">What type of ground covers your yard?</p>
+                    <div class="yard-type-grid">
+                        <label class="yard-type-option checked">
+                            <input type="checkbox" name="yardType" value="grass" checked onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Grass</span>
+                            <span class="yard-type-desc">Easy to scoop</span>
+                            <span class="price-insight">Standard service</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="rocks" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Rocks</span>
+                            <span class="yard-type-desc">Need to search carefully</span>
+                            <span class="price-insight" id="rocks-price">+$12 (careful search)</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="woodchips" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Chips</span>
+                            <span class="yard-type-desc">Harder to spot</span>
+                            <span class="price-insight" id="chips-price">+$18 (extra time)</span>
+                        </label>
+                        <label class="yard-type-option">
+                            <input type="checkbox" name="yardType" value="plants" onchange="updateQuoteDisplay();"> 
+                            <span class="yard-type-name">Plants</span>
+                            <span class="yard-type-desc">Under vegetation</span>
+                            <span class="price-insight" id="plants-price">+$30 (expert care)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Special Conditions:</label>
+                    <p class="form-hint">Select all that apply</p>
+                    <div class="challenges-grid">
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="scattered" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Scattered</span>
+                            <span class="challenge-desc">All over the yard</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="bushes" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">In Bushes</span>
+                            <span class="challenge-desc">Hidden in plants</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="hardaccess" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Hard Access</span>
+                            <span class="challenge-desc">Tight spaces</span>
+                        </label>
+                        <label class="challenge-option">
+                            <input type="checkbox" name="challenges" value="largedog" onchange="updateQuoteDisplay();"> 
+                            <span class="challenge-name">Large Dog</span>
+                            <span class="challenge-desc">High volume</span>
+                        </label>
+                    </div>
+                    <label for="otherChallenges" class="optional-label">Other issues (optional):</label>
+                    <textarea id="otherChallenges" name="otherChallenges" placeholder="Anything else we should know?" onchange="updateQuoteDisplay();"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Professional Cleaning:</label>
+                    <p class="form-hint">Yard condition affects your one-time cleanup fee:</p>
+                    <div class="condition-grid">
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="fresh" checked onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Recently Cleaned</span>
+                            <span class="condition-desc">Within 2 weeks</span>
+                            <span class="condition-fee">No fee</span>
+                        </label>
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="moderate" onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Few Weeks Ago</span>
+                            <span class="condition-desc">2-8 weeks</span>
+                            <span class="condition-fee">+$100</span>
+                        </label>
+                        <label class="condition-option">
+                            <input type="radio" name="yardCondition" value="neglected" onchange="updateQuoteDisplay();"> 
+                            <span class="condition-name">Long Time / Never</span>
+                            <span class="condition-desc">8+ weeks or no record</span>
+                            <span class="condition-fee">+$200</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Hidden fields for form submission -->
+                <input type="hidden" id="serviceType" name="serviceType" value="Weekly">
+                <input type="hidden" id="dogsCount" name="dogsCount" value="1">
+                <input type="hidden" id="yardSize" name="yardSize" value="medium">
+                <input type="hidden" id="monthlyQuote" name="monthlyQuote" value="$160">
+            </form>
+
+            <div id="formMessage" class="form-message" style="display:none;"></div>
+        </div>
+
+        <!-- SECTION 3: FINAL PRICING -->
+        <div class="section pricing-summary-section">
+            <div class="quote-breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Base Service:</span>
+                    <span class="breakdown-value" id="baseServiceDisplay">$160</span>
+                </div>
+
+                <div class="breakdown-divider">Adjustments for your property:</div>
+
+                <div class="breakdown-item" id="yardTypeAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="yardTypeLabel"></span>
+                    <span class="breakdown-value" id="yardTypeAmount"></span>
+                </div>
+
+                <div class="breakdown-item" id="specialAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="specialLabel"></span>
+                    <span class="breakdown-value" id="specialAmount"></span>
+                </div>
+
+                <div class="breakdown-total">
+                    <span class="total-label">TOTAL MONTHLY:</span>
+                    <span class="total-amount" id="totalMonthlyDisplay">$160<span class="savings-badge" style="display:none;" id="savingsBadge">SAVE $20</span></span>
+                </div>
+
+                <div style="text-align: center; margin-top: 0.8rem; color: #4caf50; font-size: 0.85rem; font-weight: 600;" id="firstMonthPreview" style="display:none;">
+                    🎉 First month: <span id="firstMonthAmount">$140</span> (after $20 new customer discount)
+                </div>
+
+                <div class="breakdown-divider" id="oneTimeDivider" style="display:none;">One-Time Fees:</div>
+
+                <div class="breakdown-item" id="initialCleanupAdjustment" style="display:none;">
+                    <span class="breakdown-label" id="initialCleanupLabel"></span>
+                    <span class="breakdown-value" id="initialCleanupAmount"></span>
+                </div>
+            </div>
+
+            <!-- PHOTO UPLOAD FEATURE - COMPACT VERSION -->
+            <details style="margin: 1rem 0; padding: 1rem; background: #f0f8f0; border-radius: 12px; border: 2px solid #4caf50;">
+                <summary style="cursor: pointer; font-weight: 600; font-size: 1rem; color: #4caf50; display: flex; align-items: center; gap: 0.6rem; user-select: none;">
+                    📸 Share Your Yard Photos
+                    <span style="font-size: 0.8rem; color: #2e7d32; margin-left: auto;">→ Verify pricing</span>
+                </summary>
+                
+                <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #e8f5e9;">
+                    
+                    <p style="color: #1b5e20; margin: 0 0 0.8rem 0; font-size: 0.9rem;">
+                        Upload 2-4 photos to verify pricing accuracy and train our AI for better estimates.
+                    </p>
+                    
+                    <!-- FILE INPUT -->
+                    <input 
+                        type="file" 
+                        id="yardPhotos" 
+                        name="yardPhotos" 
+                        accept="image/*" 
+                        multiple
+                        onchange="previewPhotos();"
+                        style="
+                            display: block;
+                            width: 100%;
+                            padding: 0.8rem;
+                            border: 2px dashed #4caf50;
+                            border-radius: 8px;
+                            background: white;
+                            cursor: pointer;
+                            font-size: 0.9rem;
+                            margin-bottom: 0.6rem;
+                        "
+                    >
+                    
+                    <!-- PHOTO PREVIEW -->
+                    <div id="photoPreview" style="
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                        gap: 8px;
+                        margin-bottom: 0.8rem;
+                        min-height: 0;
+                    "></div>
+                    
+                    <!-- COMPACT CALIBRATION HINT -->
+                    <div style="
+                        background: #e8f5e9;
+                        padding: 0.6rem;
+                        border-radius: 6px;
+                        margin-bottom: 0.8rem;
+                        border-left: 3px solid #4caf50;
+                    ">
+                        <p style="font-size: 0.8rem; color: #1b5e20; margin: 0;">
+                            <strong>📏 Tip:</strong> Add ruler/coin for size reference (helps our AI)
+                        </p>
+                    </div>
+                    
+                    <!-- ATTACH BUTTON -->
+                    <button 
+                        type="button"
+                        onclick="attachPhotosToQuote();"
+                        style="
+                            width: 100%;
+                            padding: 0.7rem 1rem;
+                            background: #4caf50;
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            font-size: 0.95rem;
+                            cursor: pointer;
+                            transition: background 0.3s ease;
+                        "
+                        onmouseover="this.style.background='#45a049'"
+                        onmouseout="this.style.background='#4caf50'"
+                    >
+                        ✓ Attach Photos
+                    </button>
+                    
+                    <p id="photoStatus" style="font-size: 0.8rem; color: #4caf50; margin: 0.4rem 0 0 0; text-align: center;"></p>
+                </div>
+            </details>
+
+            <button class="cta-button" id="submitBtn" onclick="submitForm();" disabled>GET $20 OFF: INSTANT QUOTE!</button>
+            <a href="sms:+16149187667?body=Hi! I'd like a quote for dog waste removal service." class="cta-secondary">📱 Or Text Me My Quote (614) 918-7667</a>
+            <p id="submitMessage" style="text-align: center; display: none;">Please fill in all required fields to submit</p>
+        </div>
+
+        </div>
+        <!-- End Calculator Tab -->
+
+        <!-- Mission Tab -->
+        <div id="mission-tab" class="tab-content">
+            <!-- Mission Box -->
+            <div class="mission-box">
+                <h2 class="mission-title">🐾 Our Mission</h2>
+                <p class="mission-text"><strong>Three core commitments:</strong></p>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 217, 244, 0.08); border-left: 3px solid var(--primary); border-radius: 4px;">
+                    <p style="margin-bottom: 0.8rem;"><strong>1. Your Peace of Mind</strong><br/>Professional, background-checked service with 100% satisfaction guarantee. Insured, and we care about your dogs' safety.</p>
+                    <p style="margin-bottom: 0.8rem;"><strong>2. Your Yard</strong><br/>A safe, clean, enjoyable space so you can focus on quality time with your pups instead of yard maintenance.</p>
+                    <p><strong>3. Your Community</strong><br/>Every booking supports local 501(c)(3) dog rescue. We've donated $2,400, directly saving dog lives while we keep your yard clean.</p>
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <div class="social-proof-text">⭐ Trusted by 50+ Santa Clarita Families</div>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Worth every penny. Professional, reliable, and genuinely caring. Gate photos every visit give me peace of mind."</p>
+                        <div class="testimonial-author">Jessica M. • 3 dogs, 2 years</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"$240/month is the best investment I make. My yard stays perfect and I love supporting this business."</p>
+                        <div class="testimonial-author">Mike R. • 4 dogs, 18 months</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Premium quality service. My yard has never looked better, and the team is always professional and punctual."</p>
+                        <div class="testimonial-author">Jennifer T. • 3 dogs, 1 year</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Finally found a service I can trust. Background-checked, insured, eco-friendly. Worth every penny!"</p>
+                        <div class="testimonial-author">Sarah K. • 2 dogs, 6 months</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Metrics -->
+            <div style="background: rgba(76, 175, 80, 0.1); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; text-align: center;">
+                <h3 style="color: #FFD9F4; margin-bottom: 1rem; font-family: 'Fredoka', sans-serif; font-weight: 700;">Our Impact</h3>
+                <div class="impact-grid">
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary);">50+</div>
+                        <div style="font-size: 0.8rem; color: #aaa;">Families Served</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary);">1,000+</div>
+                        <div style="font-size: 0.8rem; color: #aaa;">Dogs Helped</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary);">$2,400+</div>
+                        <div style="font-size: 0.8rem; color: #aaa;">To Local Rescue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Mission Tab -->
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <div class="faq-header" onclick="toggleFAQSection(this)">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-toggle-icon">▼</div>
+            </div>
+            
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">How do you dispose of pet waste?</div>
+                    <div class="faq-answer">
+                        We treat waste disposal seriously because your pet's health matters. Dog waste requires proper handling, so we double-bag everything in eco-friendly bags and secure it in your trash can. We can also place it beside your home if you prefer. This careful approach protects your family and the environment.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">How do you keep my dog safe during service?</div>
+                    <div class="faq-answer">
+                        Your dog's safety is everything to us. Between every yard visit, we clean and disinfect all equipment and footwear with kennel-grade, eco-friendly disinfectant. This stops any germs from spreading between homes. After we finish, we send you gate photos so you can confirm your pups are safe and sound. That's the level of care you get with every visit.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Can you clean with my dog in the yard?</div>
+                    <div class="faq-answer">
+                        For everyone's safety, we ask that dogs stay indoors while we work. This keeps your pet protected and lets our team work efficiently and safely. If dogs are left outside repeatedly, we may need to stop service at that property. We appreciate your help in keeping everyone safe.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Why is She Scoops premium priced?</div>
+                    <div class="faq-answer">
+                        You're paying for quality, not just convenience. We background-check our team, carry full insurance, use eco-friendly methods, provide gate photos, and guarantee 100% satisfaction. Every booking also supports local dog rescue. Our 50+ customers tell us it's worth it, and we'd rather do exceptional work for the right customers than cut corners to compete on price.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">Why should I support a female-owned business?</div>
+                    <div class="faq-answer">
+                        Research shows female-owned businesses consistently prioritize customer satisfaction and community impact. That's exactly what we do. Your support helps us grow and build more opportunities in Santa Clarita.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">How does the rescue partnership work?</div>
+                <div class="faq-answer">
+                    We partner with local 501(c)(3) dog rescue organizations and donate from every booking. That money rescues abused and neglected dogs, pays for medical care, and helps them find homes. We've already donated over $2,400. When you book with us, you're actually saving dog lives.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-info">
+            ✨ NEW CUSTOMERS GET $20 OFF YOUR FIRST MONTH | Questions? Text (614) 918-7667
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div style="text-align: center;">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Submitting your quote...</div>
+        </div>
+    </div>
+
+    <script>
+        // Address Autocomplete with Nominatim
+        let autocompleteTimeout;
+        let selectedAddress = null;
+        let suggestedYardSize = null;
+        let autocompleteResults = [];
+
+        function handleAddressInput(event) {
+            const query = event.target.value.trim();
+            
+            // Clear previous timeout
+            clearTimeout(autocompleteTimeout);
+            
+            // Hide suggestion when typing
+            document.getElementById('yardSizeSuggestion').classList.remove('show');
+            
+            if (query.length < 3) {
+                hideAutocomplete();
+                return;
+            }
+            
+            // Debounce API calls
+            autocompleteTimeout = setTimeout(() => {
+                searchAddress(query);
+            }, 300);
+        }
+
+        async function searchAddress(query) {
+            try {
+                // Nominatim API - free, no key needed
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?` +
+                    `q=${encodeURIComponent(query)}, California, US&` +
+                    `format=json&` +
+                    `addressdetails=1&` +
+                    `limit=5&` +
+                    `countrycodes=us`,
+                    {
+                        headers: {
+                            'User-Agent': 'SheScoops Property Calculator'
+                        }
+                    }
+                );
+                
+                if (!response.ok) return;
+                
+                const results = await response.json();
+                displayAutocomplete(results);
+            } catch (error) {
+                console.error('Address search error:', error);
+                hideAutocomplete();
+            }
+        }
+
+        function displayAutocomplete(results) {
+            const dropdown = document.getElementById('addressAutocomplete');
+            
+            if (!dropdown) return;
+            
+            if (!results || results.length === 0) {
+                hideAutocomplete();
+                return;
+            }
+            
+            // Store results globally so we can access them by index
+            autocompleteResults = results;
+            
+            dropdown.innerHTML = results.map((result, index) => {
+                const address = result.address || {};
+                const mainAddress = [
+                    address.house_number,
+                    address.road
+                ].filter(Boolean).join(' ');
+                
+                const details = [
+                    address.city || address.town || address.village,
+                    address.state,
+                    address.postcode
+                ].filter(Boolean).join(', ');
+                
+                return `
+                    <div class="autocomplete-item" onclick="selectAddress(${index})">
+                        <div class="address-main">${mainAddress || result.display_name}</div>
+                        <div class="address-details">${details}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Position the dropdown below the input field
+            const inputField = document.getElementById('calculatorAddress') || document.getElementById('address');
+            if (inputField) {
+                const rect = inputField.getBoundingClientRect();
+                dropdown.style.top = (rect.bottom + 8) + 'px';
+                dropdown.style.left = rect.left + 'px';
+                dropdown.style.width = rect.width + 'px';
+            }
+            
+            dropdown.classList.add('show');
+        }
+
+        function selectAddress(index) {
+            const result = autocompleteResults[index];
+            selectedAddress = result;
+            const address = result.address || {};
+            
+            // Set the address field
+            const fullAddress = [
+                address.house_number,
+                address.road,
+                address.city || address.town,
+                address.state,
+                address.postcode
+            ].filter(Boolean).join(', ');
+            
+            document.getElementById('address').value = fullAddress;
+            
+            // Also update the calculator address field if it exists
+            const calculatorAddressField = document.getElementById('calculatorAddress');
+            if (calculatorAddressField) {
+                calculatorAddressField.value = fullAddress;
+            }
+            
+            hideAutocomplete();
+            
+            // Suggest yard size based on location type
+            suggestYardSize(result);
+            
+            // Trigger form validation
+            checkFormComplete();
+        }
+
+        function suggestYardSize(result) {
+            const address = result.address || {};
+            const addressClass = result.class;
+            const addressType = result.type;
+            
+            let size = 'medium';
+            let sizeName = 'Medium (KENZO)';
+            let reason = 'typical for this area';
+            
+            // Intelligent suggestions based on location data
+            if (addressType === 'residential' || addressType === 'house') {
+                // Check if it's rural/suburban/urban based on available data
+                if (address.suburb || address.neighbourhood) {
+                    // Urban/suburban area - likely smaller yards
+                    size = 'small-med';
+                    sizeName = 'Small-Medium (KIBA)';
+                    reason = 'typical for urban/suburban neighborhoods';
+                } else if (address.village || address.hamlet) {
+                    // More rural - larger yards
+                    size = 'large';
+                    sizeName = 'Large (AKKA)';
+                    reason = 'common in rural areas';
+                }
+            }
+            
+            // Check city names for known large-lot areas
+            const city = (address.city || address.town || '').toLowerCase();
+            const largeYardCities = ['castaic', 'valencia', 'stevenson ranch', 'acton', 'agua dulce'];
+            const urbanCities = ['santa clarita', 'newhall', 'canyon country'];
+            
+            if (largeYardCities.some(c => city.includes(c))) {
+                size = 'large';
+                sizeName = 'Large (AKKA)';
+                reason = 'typical for this area';
+            } else if (urbanCities.some(c => city.includes(c))) {
+                size = 'medium';
+                sizeName = 'Medium (KENZO)';
+                reason = 'average for this neighborhood';
+            }
+            
+            // Store suggestion
+            suggestedYardSize = size;
+            
+            // Auto-apply the suggestion
+            setYardSize(size);
+            updateCalculation();
+            
+            // Display inline confirmation badge
+            const sizeNames = {
+                'small': 'LARRY detected',
+                'small-med': 'KIBA detected',
+                'medium': 'KENZO detected',
+                'large': 'AKKA detected'
+            };
+            document.getElementById('suggestionTitle').textContent = sizeNames[size];
+            document.getElementById('yardSizeSuggestion').classList.add('show');
+            
+            // Keep showing so user sees confirmation
+        }
+
+        function hideAutocomplete() {
+            document.getElementById('addressAutocomplete').classList.remove('show');
+        }
+
+        // Tab Switching Function
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            if (tabName === 'calculator') {
+                document.getElementById('calculator-tab').classList.add('active');
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            } else if (tabName === 'mission') {
+                document.getElementById('mission-tab').classList.add('active');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            }
+        }
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            // Get the parent faq-item
+            const faqItem = element.closest('.faq-item');
+            
+            if (!faqItem) {
+                console.error('FAQ item not found');
+                return;
+            }
+            
+            const isOpen = faqItem.classList.contains('open');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('open');
+            });
+            
+            // Open clicked item if it wasn't already open
+            if (!isOpen) {
+                faqItem.classList.add('open');
+                // Scroll to the answer smoothly
+                setTimeout(() => {
+                    const faqAnswer = faqItem.querySelector('.faq-answer');
+                    if (faqAnswer) {
+                        faqAnswer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }, 50);
+            }
+        }
+
+        /* Mobile FAQ Section Toggle */
+        function toggleFAQSection(element) {
+            const faqSection = element.closest('.faq-section');
+            
+            if (!faqSection) {
+                console.error('FAQ section not found');
+                return;
+            }
+            
+            // Only works on mobile (< 768px)
+            if (window.innerWidth > 768) {
+                return;
+            }
+            
+            faqSection.classList.toggle('open');
+        }
+
+        // Pricing Model (Per-Visit Pricing)
+        // Each frequency has visit price and visits per month
+        const prices = {
+            1: { name: 'Weekly', visitsPerMonth: 4, dogPrices: { '1-2': 38, '3-4': 50, '5+': 65 } },
+            2: { name: 'Bi-weekly', visitsPerMonth: 2, dogPrices: { '1-2': 50, '3-4': 52, '5+': 67 } },
+            3: { name: '2x Weekly', visitsPerMonth: 8, dogPrices: { '1-2': 27, '3-4': 40, '5+': 52 } }
+        };
+
+        const yardSizes = {
+            small: { name: 'Larry', multiplier: 0.95 },
+            'small-med': { name: 'Kiba', multiplier: 1.0 },
+            medium: { name: 'Kenzo', multiplier: 1.15 },
+            large: { name: 'Akka', multiplier: 1.35 }
+        };
+
+        let selectedFrequency = 1;
+        let selectedYardSize = 'medium';
+        let selectedDogs = 1;
+
+        // Set yard size and update display
+        function setYardSize(size) {
+            selectedYardSize = size;
+            
+            // Target only yard size buttons
+            const yardSizeButtons = document.querySelectorAll('#yardSizeButtons .btn');
+            
+            // Remove active class from all yard size buttons
+            yardSizeButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Activate the correct button based on size
+            yardSizeButtons.forEach((btn) => {
+                const btnText = btn.textContent.toLowerCase();
+                if ((size === 'small' && btnText.includes('larry')) ||
+                    (size === 'small-med' && btnText.includes('kiba')) ||
+                    (size === 'medium' && btnText.includes('kenzo')) ||
+                    (size === 'large' && btnText.includes('akka'))) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Set frequency and update display
+        function setFrequency(freq) {
+            selectedFrequency = freq;
+            // Find frequency buttons
+            const frequencyButtons = document.querySelectorAll('.button-group .btn');
+            
+            frequencyButtons.forEach((btn) => {
+                const btnText = btn.textContent.toUpperCase();
+                // Remove active from frequency buttons only
+                if (btnText.includes('WEEKLY') || btnText.includes('2X')) {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Activate the correct button
+            frequencyButtons.forEach((btn) => {
+                const btnText = btn.textContent.toUpperCase();
+                if ((freq === 1 && btnText === 'WEEKLY') ||
+                    (freq === 2 && btnText === 'BI-WEEKLY') ||
+                    (freq === 3 && btnText.includes('2X'))) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Set dogs from slider
+        function setDogsSlider(value) {
+            const dogCounts = [1.5, 3.5, 5];
+            selectedDogs = dogCounts[value];
+            updatePawDisplay();
+        }
+
+        // Update paw display
+        function updatePawDisplay() {
+            const sliderValue = parseInt(document.getElementById('dogsSlider').value);
+            const pawCounts = [1, 2, 3];
+            const pawDisplay = document.getElementById('pawDisplay');
+            pawDisplay.innerHTML = '';
+            for (let i = 0; i < pawCounts[sliderValue]; i++) {
+                const img = document.createElement('img');
+                img.src = 'Paws.png';
+                img.alt = 'paw';
+                pawDisplay.appendChild(img);
+            }
+        }
+
+        // Calculate base price
+        function calculateBasePrice() {
+            const priceModel = prices[selectedFrequency];
+            const yardMultiplier = yardSizes[selectedYardSize].multiplier;
+            
+            // Determine dog tier
+            let dogTier = '1-2';
+            if (selectedDogs >= 5) dogTier = '5+';
+            else if (selectedDogs >= 3) dogTier = '3-4';
+            
+            // Get per-visit price for this dog tier
+            const visitPrice = priceModel.dogPrices[dogTier];
+            
+            // Apply yard multiplier to per-visit price
+            const adjustedVisitPrice = Math.round(visitPrice * yardMultiplier);
+            
+            // Calculate monthly price
+            const monthlyTotal = Math.round(adjustedVisitPrice * priceModel.visitsPerMonth);
+
+            return monthlyTotal;
+        }
+
+        // Update calculation display
+        function updateCalculation() {
+            const basePrice = calculateBasePrice();
+            document.getElementById('baseServiceDisplay').textContent = '$' + basePrice;
+            document.getElementById('totalMonthlyDisplay').textContent = '$' + basePrice;
+            
+            // Update hidden fields
+            const freq = prices[selectedFrequency].name;
+            const yard = yardSizes[selectedYardSize].name;
+            document.getElementById('serviceType').value = freq;
+            document.getElementById('dogsCount').value = selectedDogs.toFixed(1);
+            document.getElementById('yardSize').value = yard;
+            document.getElementById('monthlyQuote').value = '$' + basePrice;
+
+            // Update progress - Step 1 is always done when user selects service
+            const step1 = document.getElementById('step1');
+            step1.classList.add('completed');
+            step1.querySelector('.progress-status').textContent = 'Complete';
+        }
+
+        // Calculate adjustments based on form inputs
+        function calculateAdjustments() {
+            const basePrice = calculateBasePrice();
+            let yardTypeMultiplier = 1.0;
+            let challengeFees = 0;
+
+            // Check yard type - use highest multiplier if multiple selected
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const yardTypes = Array.from(yardTypeCheckboxes).map(cb => cb.value);
+            
+            if (yardTypes.length > 0) {
+                // Find the highest multiplier among selected types
+                let maxMultiplier = 1.0;
+                yardTypes.forEach(type => {
+                    if (type === 'rocks') maxMultiplier = Math.max(maxMultiplier, 1.25);
+                    else if (type === 'woodchips') maxMultiplier = Math.max(maxMultiplier, 1.15);
+                    else if (type === 'plants') maxMultiplier = Math.max(maxMultiplier, 1.30);
+                    else if (type === 'grass') maxMultiplier = Math.max(maxMultiplier, 1.0);
+                });
+                yardTypeMultiplier = maxMultiplier;
+            }
+
+            // Check challenges - FIXED FEES per challenge type (not percentage)
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]:checked');
+            const numChallenges = challengeCheckboxes.length;
+            
+            // Fixed fee structure for each challenge type
+            challengeCheckboxes.forEach(checkbox => {
+                if (checkbox.value === 'scattered') challengeFees += 8;
+                else if (checkbox.value === 'bushes') challengeFees += 10;
+                else if (checkbox.value === 'hardaccess') challengeFees += 12;
+                else if (checkbox.value === 'largedog') challengeFees += 8;
+            });
+
+            return {
+                basePrice: basePrice,
+                yardTypeMultiplier: yardTypeMultiplier,
+                challengeFees: challengeFees,
+                numChallenges: numChallenges,
+                yardTypes: yardTypes
+            };
+        }
+
+        // Update quote display with adjustments
+        function updateQuoteDisplay() {
+            const adjustments = calculateAdjustments();
+            const basePrice = adjustments.basePrice;
+            const yardTypeMultiplier = adjustments.yardTypeMultiplier;
+            const challengeFees = adjustments.challengeFees;
+            const numChallenges = adjustments.numChallenges;
+            const yardTypes = adjustments.yardTypes;
+            
+            // Calculate price with yard multiplier first
+            const priceAfterYard = Math.round(basePrice * yardTypeMultiplier);
+            
+            // Then add challenge fees
+            let finalPrice = priceAfterYard + challengeFees;
+            
+            // ENFORCE PRICE MINIMUMS - Never underprice
+            const minimumPrices = {
+                1: 152,  // Weekly minimum
+                2: 100,  // Bi-weekly minimum
+                3: 216   // 2x Weekly minimum
+            };
+            
+            if (finalPrice < minimumPrices[selectedFrequency]) {
+                finalPrice = minimumPrices[selectedFrequency];
+            }
+
+            // Display base price
+            document.getElementById('baseServiceDisplay').textContent = '$' + basePrice;
+
+            // Display yard type adjustment
+            if (yardTypeMultiplier > 1.0 && yardTypes.length > 0) {
+                const yardAdjustment = Math.round(basePrice * (yardTypeMultiplier - 1));
+                const percentage = Math.round((yardTypeMultiplier - 1) * 100);
+                const typeNames = yardTypes.join(', ');
+                document.getElementById('yardTypeLabel').textContent = `Yard type (${typeNames}, +${percentage}%):`;
+                document.getElementById('yardTypeAmount').textContent = '+$' + yardAdjustment;
+                document.getElementById('yardTypeAdjustment').style.display = 'flex';
+            } else {
+                document.getElementById('yardTypeAdjustment').style.display = 'none';
+            }
+
+            // Display challenge adjustment (FIXED FEES, not percentage)
+            if (numChallenges > 0 && challengeFees > 0) {
+                const pluralText = numChallenges === 1 ? 'challenge' : 'challenges';
+                document.getElementById('specialLabel').textContent = `Poop challenges (${numChallenges} ${pluralText}):`;
+                document.getElementById('specialAmount').textContent = '+$' + challengeFees;
+                document.getElementById('specialAdjustment').style.display = 'flex';
+            } else {
+                document.getElementById('specialAdjustment').style.display = 'none';
+            }
+
+            // Display initial cleanup fee
+            const yardCondition = document.querySelector('input[name="yardCondition"]:checked');
+            let initialCleanupFee = 0;
+            if (yardCondition) {
+                if (yardCondition.value === 'moderate') {
+                    initialCleanupFee = 100;
+                } else if (yardCondition.value === 'neglected') {
+                    initialCleanupFee = 200;
+                }
+            }
+
+            if (initialCleanupFee > 0) {
+                const conditionLabel = yardCondition.closest('.condition-option').querySelector('.condition-name').textContent;
+                document.getElementById('initialCleanupLabel').textContent = `Initial cleanup (${conditionLabel}):`;
+                document.getElementById('initialCleanupAmount').textContent = '+$' + initialCleanupFee;
+                document.getElementById('initialCleanupAdjustment').style.display = 'flex';
+                document.getElementById('oneTimeDivider').style.display = 'block';
+            } else {
+                document.getElementById('initialCleanupAdjustment').style.display = 'none';
+                document.getElementById('oneTimeDivider').style.display = 'none';
+            }
+
+            // Display total
+            document.getElementById('totalMonthlyDisplay').innerHTML = '$' + finalPrice + '<span class="savings-badge" id="savingsBadge">SAVE $20</span>';
+            document.getElementById('monthlyQuote').value = '$' + finalPrice;
+            
+            // Show first month preview with discount
+            const firstMonthPrice = finalPrice - 20;
+            document.getElementById('firstMonthAmount').textContent = '$' + firstMonthPrice;
+            document.getElementById('firstMonthPreview').style.display = 'block';
+        }
+
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const dogsCount = document.getElementById('dogsCount').value;
+            const yardSize = document.getElementById('yardSize').value;
+            
+            // Get selected challenges
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]:checked');
+            const challenges = Array.from(challengeCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Get other challenges notes
+            const otherChallenges = document.getElementById('otherChallenges').value;
+
+            // Get yard condition and calculate initial cleanup fee
+            const yardConditionRadio = document.querySelector('input[name="yardCondition"]:checked');
+            let yardCondition = 'Not selected';
+            let initialCleanupFee = 0;
+            if (yardConditionRadio) {
+                yardCondition = yardConditionRadio.closest('.condition-option').querySelector('.condition-name').textContent;
+                if (yardConditionRadio.value === 'moderate') {
+                    initialCleanupFee = 100;
+                } else if (yardConditionRadio.value === 'neglected') {
+                    initialCleanupFee = 200;
+                }
+            }
+
+            // Get adjustments for email
+            const adjustments = calculateAdjustments();
+            const finalPrice = Math.round(adjustments.basePrice * adjustments.yardTypeMultiplier * adjustments.challengeMultiplier);
+
+            // Send via Formspree
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('address', address);
+            formData.append('serviceType', serviceType);
+            formData.append('dogsCount', dogsCount);
+            formData.append('yardSize', yardSize);
+            formData.append('yardType', yardTypes);
+            formData.append('challenges', challenges);
+            formData.append('otherChallenges', otherChallenges);
+            formData.append('yardCondition', yardCondition);
+            formData.append('initialCleanupFee', '$' + initialCleanupFee);
+            formData.append('monthlyQuote', finalPrice);
+            formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
+            formData.append('_replyto', email || 'no-email@provided.com');
+
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('show');
+
+            fetch('https://formspree.io/f/meoqvdzq', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                // Hide loading
+                loadingOverlay.classList.remove('show');
+                
+                if (response.ok) {
+                    // Show success feedback briefly before redirect
+                    const submitMessage = document.getElementById('submitMessage');
+                    submitMessage.style.display = 'block';
+                    submitMessage.textContent = '✅ Success! Redirecting to your confirmation...';
+                    submitMessage.style.color = '#4caf50';
+                    
+                    // Redirect to thank you page with details
+                    setTimeout(() => {
+                        const queryParams = new URLSearchParams({
+                            price: finalPrice,
+                            discount: 20,
+                            service: serviceType,
+                            address: address
+                        });
+                        window.location.href = 'thank-you.html?' + queryParams.toString();
+                    }, 1000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                // Hide loading
+                loadingOverlay.classList.remove('show');
+                const messageDiv = document.getElementById('formMessage');
+                messageDiv.className = 'form-message error';
+                messageDiv.textContent = '⚠️ Oops! There was a problem. Please try again or text us at (614) 918-7667';
+                messageDiv.style.display = 'block';
+            });
+        }
+
+        // Store selected photos globally
+        let selectedPhotos = [];
+
+        function previewPhotos() {
+            const fileInput = document.getElementById('yardPhotos');
+            const preview = document.getElementById('photoPreview');
+            const files = fileInput.files;
+            
+            preview.innerHTML = '';
+            selectedPhotos = [];
+            
+            if (files.length > 0) {
+                for (let file of files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Create thumbnail
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100%';
+                        img.style.height = '100px';
+                        img.style.objectFit = 'cover';
+                        img.style.borderRadius = '8px';
+                        img.style.border = '2px solid #d4694f';
+                        img.style.cursor = 'pointer';
+                        img.title = 'Click to remove';
+                        
+                        // Add click-to-remove functionality
+                        img.onclick = function() {
+                            img.parentElement.remove();
+                            selectedPhotos = selectedPhotos.filter(p => p.file !== file);
+                        }
+                        
+                        const container = document.createElement('div');
+                        container.style.position = 'relative';
+                        container.appendChild(img);
+                        preview.appendChild(container);
+                        
+                        // Store photo data
+                        selectedPhotos.push({
+                            file: file,
+                            data: e.target.result,
+                            name: file.name
+                        });
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+        function attachPhotosToQuote() {
+            const statusEl = document.getElementById('photoStatus');
+            const fileInput = document.getElementById('yardPhotos');
+            
+            if (selectedPhotos.length === 0) {
+                statusEl.textContent = '⚠️ Please select at least one photo';
+                statusEl.style.color = '#ff5722';
+                return;
+            }
+            
+            // Add photo metadata to form submission
+            const photoDataField = document.getElementById('photoData') || createPhotoDataField();
+            
+            // Create JSON with quote + photo info
+            const quoteData = {
+                photoCount: selectedPhotos.length,
+                photoNames: selectedPhotos.map(p => p.name).join(', '),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store in hidden field
+            photoDataField.value = JSON.stringify(quoteData);
+            
+            statusEl.textContent = `✅ ${selectedPhotos.length} photo(s) attached! Ready to submit.`;
+            statusEl.style.color = '#4caf50';
+            
+            // Optional: Auto-scroll to submit button
+            setTimeout(() => {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 500);
+        }
+
+        function createPhotoDataField() {
+            const field = document.createElement('input');
+            field.type = 'hidden';
+            field.id = 'photoData';
+            field.name = 'photoData';
+            document.querySelector('form')?.appendChild(field);
+            return field;
+        }
+
+        // Optional: Prevent form submission if photos are selected but not attached
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const fileInput = document.getElementById('yardPhotos');
+                    if (fileInput && fileInput.files.length > 0 && selectedPhotos.length === 0) {
+                        e.preventDefault();
+                        alert('You selected photos but didn\'t attach them. Please click "Attach Photos to Quote" or remove the photos.');
+                    }
+                });
+            }
+        });
+
+        // Submit form function
+        function submitForm() {
+            const address = document.getElementById('address').value.trim();
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const hasYardType = yardTypeCheckboxes.length > 0;
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenge"]:checked');
+            const hasChallenges = challengeCheckboxes.length > 0;
+
+            let hasErrors = false;
+            const submitMessage = document.getElementById('submitMessage');
+            const addressInput = document.getElementById('address');
+            const yardTypeGrid = document.querySelector('.yard-type-grid');
+            const challengesGrid = document.querySelector('.challenges-grid');
+
+            // Clear previous error states
+            addressInput.classList.remove('error');
+            yardTypeGrid.classList.remove('error');
+            challengesGrid.classList.remove('error');
+
+            // Check address
+            if (!address) {
+                addressInput.classList.add('error');
+                hasErrors = true;
+            }
+
+            // Check yard type
+            if (!hasYardType) {
+                yardTypeGrid.classList.add('error');
+                hasErrors = true;
+            }
+
+            // Check challenges (optional, but if required uncomment)
+            // if (!hasChallenges) {
+            //     challengesGrid.classList.add('error');
+            //     hasErrors = true;
+            // }
+
+            // Show error message if there are errors
+            if (hasErrors) {
+                submitMessage.classList.add('show');
+                submitMessage.textContent = 'Please fill in all required fields (Address, Yard Type, and Poop Challenges)';
+                return; // Don't submit
+            }
+
+            // If no errors, hide message and submit
+            submitMessage.classList.remove('show');
+            document.getElementById('quoteForm').dispatchEvent(new Event('submit'));
+        }
+
+        // Check if form is complete and enable/disable submit button
+        function checkFormComplete() {
+            const address = document.getElementById('address').value.trim();
+            const addressInput = document.getElementById('address');
+            const yardTypeGrid = document.querySelector('.yard-type-grid');
+            const challengesGrid = document.querySelector('.challenges-grid');
+            
+            // Check yard type - at least one checkbox must be checked
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
+            const hasYardType = yardTypeCheckboxes.length > 0;
+
+            // Check challenges
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenge"]:checked');
+            const hasChallenges = challengeCheckboxes.length > 0;
+
+            // Check if required fields are filled (Address and Yard Type required)
+            const isComplete = address && hasYardType;
+
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Enable/disable button based on required fields
+            if (isComplete) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+
+            // Clear error states when user fills in fields
+            if (address) {
+                addressInput.classList.remove('error');
+            }
+            if (hasYardType) {
+                yardTypeGrid.classList.remove('error');
+            }
+            if (hasChallenges) {
+                challengesGrid.classList.remove('error');
+            }
+
+            // Update progress steps
+            updateProgressSteps(address, hasYardType, isComplete);
+        }
+
+        function updateProgressSteps(address, hasYardType, isComplete) {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+
+            // Step 1: Service Basics (Frequency, Dogs, Yard Size) - Always visible in calculator
+            step1.classList.add('completed');
+            step1.querySelector('.progress-status').textContent = 'Complete';
+
+            // Step 2: Your Property (Address + Yard Type)
+            if (hasYardType && address) {
+                step2.classList.add('completed');
+                step2.classList.remove('active');
+                step2.querySelector('.progress-status').textContent = 'Complete';
+                step3.classList.add('active');
+                step3.querySelector('.progress-status').textContent = 'In Progress';
+            } else {
+                step2.classList.add('active');
+                step2.classList.remove('completed');
+                step2.querySelector('.progress-status').textContent = 'In Progress';
+                step3.classList.remove('active', 'completed');
+                step3.querySelector('.progress-status').textContent = 'Final Step';
+                
+                // Auto-focus on address field when step 2 becomes active
+                if (step2.classList.contains('active') && !address) {
+                    setTimeout(() => {
+                        document.getElementById('address').focus();
+                    }, 300);
+                }
+            }
+
+            // Step 3: Get Quote (Submit) - Active when form complete
+            if (isComplete) {
+                step3.classList.add('active');
+                step3.querySelector('.progress-status').textContent = 'Ready to Submit';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCalculation();
+            updateQuoteDisplay();
+
+            // Add event listeners to only the required form fields
+            document.getElementById('address').addEventListener('input', checkFormComplete);
+            
+            // Add event listeners to yard type checkboxes
+            const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]');
+            yardTypeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Toggle checked class on this option (allow multiple)
+                    this.closest('label').classList.toggle('checked', this.checked);
+                    checkFormComplete();
+                });
+            });
+
+            // Challenge checkboxes update quote and toggle checked class
+            const challengeCheckboxes = document.querySelectorAll('input[name="challenges"]');
+            challengeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Toggle checked class on parent label
+                    this.closest('label').classList.toggle('checked', this.checked);
+                    updateQuoteDisplay();
+                    checkFormComplete();
+                });
+            });
+
+            // Initial check
+            checkFormComplete();
+        });
+    </script>
+</body>
+</html>
