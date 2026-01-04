@@ -3120,7 +3120,8 @@
             // Calculate monthly price
             const monthlyTotal = Math.round(adjustedVisitPrice * priceModel.visitsPerMonth);
 
-            return monthlyTotal;
+            // Apply minimum price floor of $100
+            return Math.max(monthlyTotal, 100);
         }
 
         // Update calculation display
