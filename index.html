@@ -3323,6 +3323,14 @@
             formData.append('_subject', `New Quote Request from ${name || 'Customer'}`);
             formData.append('_replyto', email || 'no-email@provided.com');
 
+            // Attach photos if any
+            const photoInput = document.getElementById('photoUpload');
+            if (photoInput && photoInput.files.length > 0) {
+                for (let i = 0; i < photoInput.files.length; i++) {
+                    formData.append('photos', photoInput.files[i]);
+                }
+            }
+
             // Show loading overlay
             const loadingOverlay = document.getElementById('loadingOverlay');
             loadingOverlay.classList.add('show');
