@@ -3496,50 +3496,42 @@
 
         // Submit form function
         function submitForm() {
+            // Get address from calculator field (visible one)
+            const calculatorAddress = document.getElementById('calculatorAddress').value.trim();
             const address = document.getElementById('address').value.trim();
+            
+            // Use calculator address if hidden address is empty
+            if (!address && calculatorAddress) {
+                document.getElementById('address').value = calculatorAddress;
+            }
+            
+            const finalAddress = address || calculatorAddress;
             const yardTypeCheckboxes = document.querySelectorAll('input[name="yardType"]:checked');
             const hasYardType = yardTypeCheckboxes.length > 0;
-            const challengeCheckboxes = document.querySelectorAll('input[name="challenge"]:checked');
-            const hasChallenges = challengeCheckboxes.length > 0;
 
             let hasErrors = false;
             const submitMessage = document.getElementById('submitMessage');
-            const addressInput = document.getElementById('address');
-            const yardTypeGrid = document.querySelector('.yard-type-grid');
-            const challengesGrid = document.querySelector('.challenges-grid');
-
-            // Clear previous error states
-            addressInput.classList.remove('error');
-            yardTypeGrid.classList.remove('error');
-            challengesGrid.classList.remove('error');
 
             // Check address
-            if (!address) {
-                addressInput.classList.add('error');
+            if (!finalAddress) {
                 hasErrors = true;
             }
 
             // Check yard type
             if (!hasYardType) {
-                yardTypeGrid.classList.add('error');
                 hasErrors = true;
             }
 
-            // Check challenges (optional, but if required uncomment)
-            // if (!hasChallenges) {
-            //     challengesGrid.classList.add('error');
-            //     hasErrors = true;
-            // }
-
             // Show error message if there are errors
             if (hasErrors) {
-                submitMessage.classList.add('show');
-                submitMessage.textContent = 'Please fill in all required fields (Address, Yard Type, and Poop Challenges)';
+                submitMessage.style.display = 'block';
+                submitMessage.textContent = 'Please fill in all required fields (Address and Yard Type)';
+                submitMessage.style.color = '#ff4444';
                 return; // Don't submit
             }
 
             // If no errors, hide message and submit
-            submitMessage.classList.remove('show');
+            submitMessage.style.display = 'none';
             document.getElementById('quoteForm').dispatchEvent(new Event('submit'));
         }
 
